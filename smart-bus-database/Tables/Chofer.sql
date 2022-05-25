@@ -1,0 +1,5 @@
+﻿CREATE TABLE [dbo].[Chofer]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
+    [Edad] INT NULL 
+)
