@@ -4,13 +4,13 @@ namespace SmartBus.Entities
 {
     public class BaseEntity
     {
-        public int Id { get; set; }
-        public string UsuarioCreacion { get; set; }
-        public DateTime FechaCreacion { get; set; }
-        public string UsuarioModificacion { get; set; }
-        public DateTime? FechaModificacion { get; set; }
-        public string UsuarioEliminacion { get; set; }
-        public DateTime? FechaEliminacion { get; set; }
-        public bool Eliminado { get; set; }
+        public virtual int Id { get; set; }
+        public virtual string UsuarioCreacion { get; set; }
+        public virtual DateTime FechaCreacion { get; set; }
+        public virtual string UsuarioModificacion { get; set; }
+        public virtual DateTime? FechaModificacion { get; set; }
+        public virtual string UsuarioEliminacion { get; set; }
+        public virtual DateTime? FechaEliminacion { get; set; }
+        public virtual bool Eliminado { get; set; }
     }
 }

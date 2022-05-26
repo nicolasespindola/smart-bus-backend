@@ -61,8 +61,7 @@
     <Folder Include="Scripts\post-deploy" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="Tables\Chofer.sql" />
-    <Build Include="Tables\Recorrido.sql" />
+    <Build Include="Tables\Pasajero.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="SmartBus.Database.refactorlog" />

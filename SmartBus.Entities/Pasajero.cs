@@ -8,13 +8,13 @@ namespace SmartBus.Entities
 {
     public class Pasajero : BaseEntity
     {
-        public string Nombre { get; set; }
-        public string Apellido { get; set; }
-        public DateTime FechaNacimiento { get; set; }
-        public string Telefono { get; set; }
-        public string CalleDomicilio { get; set; }
-        public int NumeroDomicilio { get; set; }
-        public int? PisoDepartamento { get; set; }
-        public string IdentificacionDepartamento { get; set; }
+        public virtual string Nombre { get; set; }
+        public virtual string Apellido { get; set; }
+        public virtual DateTime FechaNacimiento { get; set; }
+        public virtual string Telefono { get; set; }
+        public virtual string CalleDomicilio { get; set; }
+        public virtual int NumeroDomicilio { get; set; }
+        public virtual int? PisoDepartamento { get; set; }
+        public virtual string IdentificacionDepartamento { get; set; }
     }
 }
