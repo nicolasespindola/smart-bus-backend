@@ -5,11 +5,11 @@ VisualStudioVersion = 16.0.32002.261
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "smart-bus-backend", "smart-bus-backend\smart-bus-backend.csproj", "{6F08841F-F072-4DD1-AB40-3A391B714FCA}"
 EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "smart-bus-database", "smart-bus-database\smart-bus-database.sqlproj", "{77903E6C-AFFF-4D78-A7D4-E643B3F838BF}"
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "SmartBus.Database", "smart-bus-database\SmartBus.Database.sqlproj", "{77903E6C-AFFF-4D78-A7D4-E643B3F838BF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartBus.Entities", "SmartBus.Entities\SmartBus.Entities.csproj", "{A224B626-8066-479B-9BB0-456AB7951710}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartBus.Entities", "SmartBus.Entities\SmartBus.Entities.csproj", "{A224B626-8066-479B-9BB0-456AB7951710}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartBus.DataAccess", "SmartBus.DataAccess\SmartBus.DataAccess.csproj", "{E05A001A-DCEF-4C4F-8958-114D5E62E558}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartBus.DataAccess", "SmartBus.DataAccess\SmartBus.DataAccess.csproj", "{E05A001A-DCEF-4C4F-8958-114D5E62E558}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

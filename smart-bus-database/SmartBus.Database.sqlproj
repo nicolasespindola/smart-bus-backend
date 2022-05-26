@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <Name>smart_bus_database</Name>
+    <Name>SmartBus.Database</Name>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
     <ProjectGuid>{77903e6c-afff-4d78-a7d4-e643b3f838bf}</ProjectGuid>
@@ -65,10 +65,10 @@
     <Build Include="Tables\Recorrido.sql" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="smart-bus-database.publish.xml" />
+    <None Include="SmartBus.Database.publish.xml" />
   </ItemGroup>
   <ItemGroup>
-    <RefactorLog Include="smart-bus-database.refactorlog" />
+    <RefactorLog Include="SmartBus.Database.refactorlog" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Scripts\post-deploy\Script.PostDeployment.sql" />
