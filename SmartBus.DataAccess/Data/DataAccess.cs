@@ -1,4 +1,7 @@
-﻿using SmartBus.DataAccess.DTOs;
+﻿using FluentNHibernate.Cfg;
+using FluentNHibernate.Cfg.Db;
+using NHibernate;
+using SmartBus.DataAccess.DTOs;
 using SmartBus.Entities;
 using System;
 using System.Collections.Generic;
@@ -10,38 +13,42 @@ namespace SmartBus.DataAccess.Data
 {
     public class DataAccess : IDataAccess
     {
-        private List<Pasajero> _pasajeros = new();
+        private ISessionFactory _sessionFactory;
 
         public DataAccess()
         {
-            _pasajeros.Add(new Pasajero() { Id = 1, Nombre = "Nicolas", Apellido = "Espindola", FechaNacimiento = DateTime.Now, Telefono = "1137573317", CalleDomicilio = "Laprida", NumeroDomicilio = 1611, PisoDepartamento = 4, IdentificacionDepartamento = "B", UsuarioCreacion = "nespindola", FechaCreacion = DateTime.Now });
-            _pasajeros.Add(new Pasajero() { Id = 2, Nombre = "Santiago", Apellido = "Espindola", FechaNacimiento = DateTime.Now, Telefono = "1137573317", CalleDomicilio = "America", NumeroDomicilio = 4122, UsuarioCreacion = "nespindola", FechaCreacion = DateTime.Now });
+            _sessionFactory = CreateSessionFactory();
         }
 
-        public Pasajero AddPasajero(PasajeroDTO pasajeroDTO)
+        public ISessionFactory CreateSessionFactory()
         {
-            Pasajero newPasajero = new() { 
-                Nombre = pasajeroDTO.Nombre, 
-                Apellido = pasajeroDTO.Apellido, 
-                FechaNacimiento = pasajeroDTO.FechaNacimiento, 
-                Telefono = pasajeroDTO.Telefono, 
-                CalleDomicilio = pasajeroDTO.CalleDomicilio, 
-                NumeroDomicilio = pasajeroDTO.NumeroDomicilio, 
-                PisoDepartamento = pasajeroDTO.PisoDepartamento, 
-                IdentificacionDepartamento = pasajeroDTO.IdentificacionDepartamento, 
-                UsuarioCreacion = "nespindola", 
-                FechaCreacion = DateTime.Now
-            };
-            newPasajero.Id = _pasajeros.Max(p => p.Id) + 1;
-
-            _pasajeros.Add(newPasajero);
-
-            return newPasajero;
+            return Fluently
+                    .Configure()
+                    .Database
+                    (
+                        MsSqlConfiguration
+                        .MsSql2012
+                        .ConnectionString(@"Data Source=(localdb)\MSSQLLocalDB;Database=smart-bus-database;Integrated Security=True;Persist Security Info=False;Pooling=False;MultipleActiveResultSets=False;Connect Timeout=60;Encrypt=False;TrustServerCertificate=False")
+                    )
+                    .Mappings(m => m.FluentMappings.AddFromAssemblyOf<DataAccess>())
+                    .BuildSessionFactory();
         }
 
         public List<Pasajero> GetPasajeros()
         {
-            return _pasajeros;
+            using (var session = _sessionFactory.OpenSession())
+            {
+                using(var transaction = session.BeginTransaction())
+                {
+                    var pasajeros = session.CreateCriteria(typeof(Pasajero)).List<Pasajero>();
+                    return pasajeros.ToList();
+                }
+            }
+        }
+
+        public Pasajero AddPasajero(PasajeroDTO pasajeroDTO)
+        {
+            throw new NotImplementedException();
         }
     }
 }
