@@ -65,12 +65,12 @@
     <Build Include="Tables\Recorrido.sql" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="SmartBus.Database.publish.xml" />
-  </ItemGroup>
-  <ItemGroup>
     <RefactorLog Include="SmartBus.Database.refactorlog" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Scripts\post-deploy\Script.PostDeployment.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="SmartBus.Database.publish.xml" />
   </ItemGroup>
 </Project>
