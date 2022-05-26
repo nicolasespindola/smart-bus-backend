@@ -8,7 +8,6 @@ namespace SmartBus.DataAccess.Maps
         public PasajeroMap()
             :base()
         {
-            Id(x => x.Id);
             Map(x => x.Nombre);
             Map(x => x.Apellido);
             Map(x => x.FechaNacimiento);
