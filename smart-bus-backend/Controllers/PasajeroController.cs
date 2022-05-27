@@ -1,12 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using SmartBus.DataAccess.DTOs;
+using SmartBus.DataAccess.Command;
 using SmartBus.DataAccess.Queries;
-using SmartBus.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace smart_bus_backend.Controllers
@@ -25,6 +20,29 @@ namespace smart_bus_backend.Controllers
         public async Task<IActionResult> Get()
         {
             var response =  await mediator.Send(new ObtenerPasajerosQuery());
+            return Ok(response);
+        }
+
+        [HttpGet]
+        [Route("{id}")]
+        public async Task<IActionResult> GetPorId(int id)
+        {
+            var response = await mediator.Send(new ObtenerPasajeroPorIdQuery(id));
+            return Ok(response);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Post(AgregarPasajeroCommand request)
+        {
+            var response = await mediator.Send(request);
+            return Ok(response);
+        }
+
+        [HttpDelete]
+        [Route("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var response = await mediator.Send(new EliminarPasajeroCommand(id));
             return Ok(response);
         }
     }
