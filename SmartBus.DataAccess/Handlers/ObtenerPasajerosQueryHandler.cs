@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using NHibernate;
 using SmartBus.DataAccess.Data;
 using SmartBus.DataAccess.Queries;
 using SmartBus.Entities;
@@ -13,16 +14,16 @@ namespace SmartBus.DataAccess.Handlers
 {
     public class ObtenerPasajerosQueryHandler : IRequestHandler<ObtenerPasajerosQuery, List<Pasajero>>
     {
-        private readonly IDataAccess _dataAccess;
+        private readonly ISession session;
 
-        public ObtenerPasajerosQueryHandler(IDataAccess dataAccess)
+        public ObtenerPasajerosQueryHandler(ISession _session)
         {
-            _dataAccess = dataAccess;
+            session = _session;
         }
 
         public Task<List<Pasajero>> Handle(ObtenerPasajerosQuery request, CancellationToken cancellationToken)
         {
-            return Task.FromResult(_dataAccess.GetPasajeros());
+            return Task.FromResult(session.Query<Pasajero>().ToList());
         }
     }
 }

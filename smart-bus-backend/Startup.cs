@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using NHibernate;
 using SmartBus.DataAccess.Data;
 using System;
 using System.Collections.Generic;
@@ -33,8 +34,15 @@ namespace smart_bus_backend
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "smart_bus_backend", Version = "v1" });
             });
-            services.AddScoped<IDataAccess, DataAccess>();
-            services.AddMediatR(typeof(DataAccess).Assembly);
+            
+            var sessionFactory = NHibernateConfigurationHelper.CreateSessionFactory();
+
+            services.AddSingleton(sessionFactory);
+            services.AddScoped(factory => sessionFactory.OpenSession());
+
+            //services.AddNHibernateSessionScope();
+
+            services.AddMediatR(typeof(NHibernateConfigurationHelper).Assembly);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

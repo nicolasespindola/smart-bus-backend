@@ -15,16 +15,16 @@ namespace smart_bus_backend.Controllers
     [Route("[controller]")]
     public class PasajeroController : ControllerBase
     {
-        private IMediator _mediator;
-        public PasajeroController(IMediator mediator)
+        private IMediator mediator;
+        public PasajeroController(IMediator _mediator)
         {
-            _mediator = mediator;
+            mediator = _mediator;
         }
 
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var response =  await _mediator.Send(new ObtenerPasajerosQuery());
+            var response =  await mediator.Send(new ObtenerPasajerosQuery());
             return Ok(response);
         }
     }

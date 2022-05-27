@@ -2,7 +2,7 @@
 
 namespace SmartBus.Entities
 {
-    public class BaseEntity
+    public class BaseEntity : IBaseEntity
     {
         public virtual int Id { get; set; }
         public virtual string UsuarioCreacion { get; set; }
