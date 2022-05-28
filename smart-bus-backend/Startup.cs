@@ -35,12 +35,10 @@ namespace smart_bus_backend
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "smart_bus_backend", Version = "v1" });
             });
             
-            var sessionFactory = NHibernateConfigurationHelper.CreateSessionFactory();
+            var sessionFactory = NHibernateConfigurationHelper.CreateSessionFactory(Configuration);
 
             services.AddSingleton(sessionFactory);
-            services.AddScoped(factory => sessionFactory.OpenSession());
-
-            //services.AddNHibernateSessionScope();
+            services.AddScoped<ISession>(factory => sessionFactory.OpenSession());
 
             services.AddMediatR(typeof(NHibernateConfigurationHelper).Assembly);
         }

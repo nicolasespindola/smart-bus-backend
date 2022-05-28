@@ -38,7 +38,7 @@ namespace SmartBus.DataAccess.Handlers
 
             using (var transaction = session.BeginTransaction())
             {
-                session.SaveOrUpdate(nuevoPasajero);
+                session.Save(nuevoPasajero);
                 transaction.Commit();
             }
 
