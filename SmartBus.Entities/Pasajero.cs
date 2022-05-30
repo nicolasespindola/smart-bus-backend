@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SmartBus.Entities
 {
-    public class Pasajero : BaseEntity
+    public class Pasajero : BaseEntityConAuditoria
     {
         public virtual string Nombre { get; set; }
         public virtual string Apellido { get; set; }

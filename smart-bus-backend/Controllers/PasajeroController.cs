@@ -1,11 +1,13 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using SmartBus.Authentification;
 using SmartBus.DataAccess.Command;
 using SmartBus.DataAccess.Queries;
 using System.Threading.Tasks;
 
 namespace smart_bus_backend.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("[controller]")]
     public class PasajeroController : ControllerBase

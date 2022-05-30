@@ -3,7 +3,7 @@ using SmartBus.Entities;
 
 namespace SmartBus.DataAccess.Maps
 {
-    public class PasajeroMap : BaseMap<Pasajero>
+    public class PasajeroMap : BaseMapConAuditoria<Pasajero>
     {
         public PasajeroMap()
             :base()
