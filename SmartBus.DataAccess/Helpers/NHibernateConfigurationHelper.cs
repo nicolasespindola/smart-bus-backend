@@ -2,13 +2,8 @@
 using FluentNHibernate.Cfg.Db;
 using Microsoft.Extensions.Configuration;
 using NHibernate;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace SmartBus.DataAccess.Data
+namespace SmartBus.DataAccess.Helpers
 {
     public abstract class NHibernateConfigurationHelper
     {

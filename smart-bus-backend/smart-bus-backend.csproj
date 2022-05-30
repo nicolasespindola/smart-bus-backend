@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SmartBus.Authentification\SmartBus.Authentification.csproj" />
     <ProjectReference Include="..\SmartBus.DataAccess\SmartBus.DataAccess.csproj" />
   </ItemGroup>
 

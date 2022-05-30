@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartBus.DataAccess", "Smar
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "SmartBus.Database", "SmartBus.DataBase\SmartBus.Database.sqlproj", "{77903E6C-AFFF-4D78-A7D4-E643B3F838BF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartBus.Authentification", "SmartBus.Authentification\SmartBus.Authentification.csproj", "{E72B9A98-0A59-4BEA-A72E-CBE8F720B76C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,10 @@ Global
 		{77903E6C-AFFF-4D78-A7D4-E643B3F838BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{77903E6C-AFFF-4D78-A7D4-E643B3F838BF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{77903E6C-AFFF-4D78-A7D4-E643B3F838BF}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{E72B9A98-0A59-4BEA-A72E-CBE8F720B76C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E72B9A98-0A59-4BEA-A72E-CBE8F720B76C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E72B9A98-0A59-4BEA-A72E-CBE8F720B76C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E72B9A98-0A59-4BEA-A72E-CBE8F720B76C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
