@@ -12,32 +12,24 @@ using BCryptNet = BCrypt.Net.BCrypt;
 
 namespace SmartBus.DataAccess.Handlers
 {
-    public class AgregarUsuarioCommandHandler : IRequestHandler<AgregarUsuarioCommand, Usuario>
+    public class AgregarUsuarioCommandHandler : CommandHandler<AgregarUsuarioCommand, Usuario>
     {
-        private readonly ISession session;
-
         public AgregarUsuarioCommandHandler(ISession _session)
+            : base(_session)
         {
-            session = _session;
         }
 
-        public Task<Usuario> Handle(AgregarUsuarioCommand request, CancellationToken cancellationToken)
+        public override Task<Usuario> ResolverCommand(AgregarUsuarioCommand command, CancellationToken cancellationToken)
         {
-            if (session.Query<Usuario>().Any(x => x.Email == request.Email))
-                throw new Exception("Email '" + request.Email + "' ya esta tomado");
+            if (session.Query<Usuario>().Any(x => x.Email == command.Email))
+                throw new Exception("El Email '" + command.Email + "' ya esta tomado");
 
             var nuevoUsuario = new Usuario
             {
-                Email = request.Email,
-                Contraseña = BCryptNet.HashPassword(request.Contraseña),
+                Email = command.Email,
+                Contraseña = BCryptNet.HashPassword(command.Contraseña),
                 Eliminado = false
             };
-
-            using (var transaction = session.BeginTransaction())
-            {
-                session.Save(nuevoUsuario);
-                transaction.Commit();
-            }
 
             return Task.FromResult(nuevoUsuario);
         }

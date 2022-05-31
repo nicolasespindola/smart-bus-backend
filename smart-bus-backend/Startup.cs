@@ -8,7 +8,9 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using NHibernate;
+using smart_bus_backend.Context;
 using SmartBus.Authentification;
+using SmartBus.DataAccess.Context;
 using SmartBus.DataAccess.Helpers;
 using System;
 using System.Collections.Generic;
@@ -59,8 +61,10 @@ namespace smart_bus_backend
             var sessionFactory = NHibernateConfigurationHelper.CreateSessionFactory(Configuration);
 
             services.AddSingleton(sessionFactory);
+            services.AddHttpContextAccessor();
             services.AddScoped<ISession>(factory => sessionFactory.OpenSession());
             services.AddScoped<IJwtUtils, JwtUtils>();
+            services.AddScoped<IWebUserContext, WebUserContext>();
 
             services.AddMediatR(typeof(NHibernateConfigurationHelper).Assembly);
             services.AddMediatR(typeof(JwtUtils).Assembly);

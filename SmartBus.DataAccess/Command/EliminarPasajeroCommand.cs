@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SmartBus.DataAccess.Command
 {
-    public class EliminarPasajeroCommand : IRequest<int>
+    public class EliminarPasajeroCommand : IRequest<Pasajero>
     {
         public int Id { get; set; }
         public EliminarPasajeroCommand(int id)

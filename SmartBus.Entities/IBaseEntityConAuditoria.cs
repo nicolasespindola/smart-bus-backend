@@ -8,6 +8,6 @@ namespace SmartBus.Entities
 {
     public interface IBaseEntityConAuditoria : IBaseEntity
     {
-
+        public virtual void Eliminar(string nombreUsuarioEliminacion) { }
     }
 }

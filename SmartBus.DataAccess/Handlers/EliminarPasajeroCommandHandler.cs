@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using NHibernate;
 using SmartBus.DataAccess.Command;
+using SmartBus.DataAccess.Context;
 using SmartBus.Entities;
 using System;
 using System.Collections.Generic;
@@ -11,29 +12,22 @@ using System.Threading.Tasks;
 
 namespace SmartBus.DataAccess.Handlers
 {
-    public class EliminarPasajeroCommandHandler : IRequestHandler<EliminarPasajeroCommand, int>
+    public class EliminarPasajeroCommandHandler : CommandHandler<EliminarPasajeroCommand, Pasajero>
     {
-        private readonly ISession session;
-
-        public EliminarPasajeroCommandHandler(ISession _session)
+        private readonly IWebUserContext userContext;
+        public EliminarPasajeroCommandHandler(ISession _session, IWebUserContext _userContext)
+            : base(_session)
         {
-            session = _session;
+            userContext = _userContext;
         }
 
-        public Task<int> Handle(EliminarPasajeroCommand request, CancellationToken cancellationToken)
+        public override Task<Pasajero> ResolverCommand(EliminarPasajeroCommand command, CancellationToken cancellationToken)
         {
-            var pasajero = session.Get<Pasajero>(request.Id);
+            var pasajero = session.Get<Pasajero>(command.Id);
 
-            using (var transaction = session.BeginTransaction())
-            {
+            pasajero.Eliminar(userContext.NombreUsuario);
 
-                pasajero.Eliminado = true;
-
-                session.SaveOrUpdate(pasajero);
-                transaction.Commit();
-            }
-
-            return Task.FromResult(pasajero.Id);
+            return Task.FromResult(pasajero);
         }
     }
 }
