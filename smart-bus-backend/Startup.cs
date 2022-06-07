@@ -9,6 +9,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using NHibernate;
 using smart_bus_backend.Context;
+using smart_bus_backend.Middleware;
 using SmartBus.Authentification;
 using SmartBus.DataAccess.Context;
 using SmartBus.DataAccess.Helpers;
@@ -75,13 +76,13 @@ namespace smart_bus_backend
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "smart_bus_backend v1"));
             }
 
             app.UseRouting();
 
+            app.UseMiddleware<ErrorHandlerMiddleware>();
             app.UseMiddleware<JwtMiddleware>();
 
             app.UseEndpoints(endpoints =>
