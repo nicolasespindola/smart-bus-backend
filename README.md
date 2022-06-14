@@ -15,7 +15,7 @@ Smart Bus Mobile.
     
     ![](https://i.imgur.com/QipwaIM.png)
 
-  - Dentro del proyecto SmartBus.Database dar doble click al archivo **SmartBus.Database.publish.xml**
+  - Abrir el proyecto en Visual Studio y dentro del proyecto SmartBus.Database dar doble click al archivo **SmartBus.Database.publish.xml**
     
     ![](https://i.imgur.com/5srA1TF.png)
 
