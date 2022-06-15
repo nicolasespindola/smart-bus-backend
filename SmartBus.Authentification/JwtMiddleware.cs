@@ -26,11 +26,8 @@ namespace SmartBus.Authentification
             var idUsuario = jwtUtils.ValidateToken(token);
             if (idUsuario != null)
             {
-                // TODO: Revisar si se puede usar un query en vez de llamar al sessionFactory
                 var user = sessionFactory.OpenSession().Query<Usuario>().SingleOrDefault(usuario => usuario.Id == idUsuario.Value && !usuario.Eliminado);
                 context.Items["User"] = user;
-
-                //userService.GetById(userId.Value);
             }
 
             await _next(context);

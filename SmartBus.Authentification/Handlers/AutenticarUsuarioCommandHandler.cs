@@ -27,7 +27,7 @@ namespace SmartBus.Authentification.Handlers
 
             // validate
             if (usuario == null || !BCryptNet.Verify(request.Password, usuario.Contraseña))
-                throw new Exception("Username or password is incorrect");
+                throw new ApplicationException("El usuario y/o contraseña son incorrectos.");
 
             // authentication successful
             var token = jwtUtils.GenerateToken(usuario);
