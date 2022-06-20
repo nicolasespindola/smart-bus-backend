@@ -7,4 +7,39 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="Apellido" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="2eb7cb41-12c2-4356-99f9-4c4f623e59bb" ChangeDateTime="06/19/2022 23:23:45">
+    <Property Name="ElementName" Value="[dbo].[Pasajero].[CalleDomicilio]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Pasajero]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Domicilio" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="8d68f462-ba83-427f-b741-6278741acfb4" ChangeDateTime="06/19/2022 23:24:01">
+    <Property Name="ElementName" Value="[dbo].[Pasajero].[Domicilio]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Pasajero]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Direccion" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="cabd57f7-e85d-4e6e-8e39-3922585869a1" ChangeDateTime="06/19/2022 23:24:19">
+    <Property Name="ElementName" Value="[dbo].[Pasajero].[Direccion]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Pasajero]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Domicilio" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="403998b4-e9c8-4d60-8803-7a7ef38ba4a9" ChangeDateTime="06/20/2022 20:58:03">
+    <Property Name="ElementName" Value="[dbo].[Escuela].[Direccion]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Escuela]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Domicilio" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="4b43c0eb-01bc-4af1-84b4-f4cc12821c66" ChangeDateTime="06/20/2022 20:58:32">
+    <Property Name="ElementName" Value="[dbo].[Escuela].[Domicilio]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Escuela]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Direccion" />
+  </Operation>
 </Operations>

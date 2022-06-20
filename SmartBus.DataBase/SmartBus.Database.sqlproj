@@ -64,6 +64,7 @@
   <ItemGroup>
     <Build Include="Tables\Pasajero.sql" />
     <Build Include="Tables\Usuario.sql" />
+    <Build Include="Tables\Escuela.sql" />
     <Build Include="Tables\Chofer.sql" />
   </ItemGroup>
   <ItemGroup>
@@ -74,6 +75,5 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="SmartBus.Database.publish.xml" />
-    <None Include="Scripts\post-deploy\T_Usuario.sql" />
   </ItemGroup>
 </Project>
