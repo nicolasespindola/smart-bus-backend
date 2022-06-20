@@ -10,9 +10,7 @@ namespace SmartBus.DataAccess.Command
         public string Apellido { get; set; }
         public DateTime FechaNacimiento { get; set; }
         public string Telefono { get; set; }
-        public string CalleDomicilio { get; set; }
-        public int NumeroDomicilio { get; set; }
-        public int? PisoDepartamento { get; set; }
-        public string IdentificacionDepartamento { get; set; }
+        public Direccion Domicilio { get; set; }
+        public string PisoDepartamento { get; set; }
     }
 }
