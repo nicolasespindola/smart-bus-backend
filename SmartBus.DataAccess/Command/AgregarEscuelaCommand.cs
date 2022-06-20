@@ -11,9 +11,7 @@ namespace SmartBus.DataAccess.Command
     public class AgregarEscuelaCommand : IRequest<Escuela>
     {
         public string Nombre { get; set; }
-        public string Direccion { get; set; }
-        public float Latitud { get; set; }
-        public float Longitud { get; set; }
+        public Direccion Direccion { get; set; }
 
     }
 }

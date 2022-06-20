@@ -23,14 +23,12 @@ namespace SmartBus.DataAccess.Handlers
 
         public override Task<Escuela> ResolverCommand(AgregarEscuelaCommand command, CancellationToken cancellationToken)
         {
-            
+
 
             var nuevaEscuela = new Escuela
             {
-                Nombre = command.Nombre, 
+                Nombre = command.Nombre,
                 Direccion = command.Direccion,
-                Latitud = command.Latitud,
-                Longitud = command.Longitud,
                 UsuarioCreacion = userContext.NombreUsuario,
                 FechaCreacion = DateTime.Now,
                 Eliminado = false,

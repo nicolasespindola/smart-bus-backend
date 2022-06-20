@@ -9,8 +9,6 @@ namespace SmartBus.Entities
     public class Escuela : BaseEntityConAuditoria
     {
         public virtual string Nombre { get; set; }
-        public virtual string Direccion { get; set; }
-        public virtual float Latitud { get; set; }
-        public virtual float Longitud { get; set; }
+        public virtual Direccion Direccion { get; set; }
     }
 }

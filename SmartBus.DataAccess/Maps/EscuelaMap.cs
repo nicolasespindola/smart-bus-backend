@@ -13,9 +13,14 @@ namespace SmartBus.DataAccess.Maps
                    : base()
         {
             Map(x => x.Nombre);
-            Map(x => x.Direccion);
-            Map(x => x.Latitud);
-            Map(x => x.Longitud);
+            Component<Direccion>(x => x.Direccion, b =>
+            {
+                b.Map(c => c.Domicilio).Column("Direccion");
+                b.Component<Coordenadas>(z => z.Coordenadas, e => {
+                    e.Map(c => c.Latitude).Column("Latitud");
+                    e.Map(c => c.Longitude).Column("Longitud");
+                });
+            });
         }
     }
 }
