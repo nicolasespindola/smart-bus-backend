@@ -30,13 +30,9 @@ namespace SmartBus.DataAccess.Handlers
                 Telefono = command.Telefono,
                 Domicilio = command.Domicilio,
                 PisoDepartamento = command.PisoDepartamento,
-                Latitud = command.Latitud,
-                Longitud = command.Longitud,
                 Eliminado = false,
                 FechaCreacion = DateTime.Now,
                 UsuarioCreacion = userContext.NombreUsuario,
-
-
             };
 
             return Task.FromResult(nuevoPasajero);
