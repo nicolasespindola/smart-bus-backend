@@ -14,6 +14,8 @@ namespace SmartBus.DataAccess.Maps
         {
             Map(x => x.Nombre);
             Map(x => x.Direccion);
+            Map(x => x.Latitud);
+            Map(x => x.Longitud);
         }
     }
 }

@@ -10,5 +10,7 @@ namespace SmartBus.Entities
     {
         public virtual string Nombre { get; set; }
         public virtual string Direccion { get; set; }
+        public virtual float Latitud { get; set; }
+        public virtual float Longitud { get; set; }
     }
 }

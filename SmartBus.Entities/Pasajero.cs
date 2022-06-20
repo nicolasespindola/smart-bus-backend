@@ -12,9 +12,10 @@ namespace SmartBus.Entities
         public virtual string Apellido { get; set; }
         public virtual DateTime FechaNacimiento { get; set; }
         public virtual string Telefono { get; set; }
-        public virtual string CalleDomicilio { get; set; }
-        public virtual int NumeroDomicilio { get; set; }
-        public virtual int? PisoDepartamento { get; set; }
-        public virtual string IdentificacionDepartamento { get; set; }
+        public virtual string Domicilio { get; set; }
+        public virtual string PisoDepartamento { get; set; }
+        public virtual float Latitud { get; set; }
+        public virtual float Longitud { get; set; }
+
     }
 }

@@ -12,6 +12,8 @@ namespace SmartBus.DataAccess.Command
     {
         public string Nombre { get; set; }
         public string Direccion { get; set; }
+        public float Latitud { get; set; }
+        public float Longitud { get; set; }
 
     }
 }

@@ -3,6 +3,8 @@
 	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
     [Nombre] VARCHAR(50) NOT NULL, 
     [Direccion] VARCHAR(50) NOT NULL,
+    [Latitud] FLOAT NOT NULL,
+    [Longitud] FLOAT NOT NULL,
     [UsuarioCreacion] VARCHAR(50) NOT NULL, 
     [FechaCreacion] DATETIME NOT NULL, 
     [UsuarioModificacion] VARCHAR(50) NULL, 

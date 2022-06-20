@@ -12,10 +12,11 @@ namespace SmartBus.DataAccess.Maps
             Map(x => x.Apellido);
             Map(x => x.FechaNacimiento);
             Map(x => x.Telefono);
-            Map(x => x.CalleDomicilio);
-            Map(x => x.NumeroDomicilio);
+            Map(x => x.Domicilio);
             Map(x => x.PisoDepartamento).Nullable();
-            Map(x => x.IdentificacionDepartamento);
+            Map(x => x.Latitud);
+            Map(x => x.Longitud);
+
         }
     }
 }

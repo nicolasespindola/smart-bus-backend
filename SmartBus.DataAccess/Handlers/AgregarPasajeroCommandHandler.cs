@@ -28,13 +28,15 @@ namespace SmartBus.DataAccess.Handlers
                 Apellido = command.Apellido,
                 FechaNacimiento = command.FechaNacimiento,
                 Telefono = command.Telefono,
-                CalleDomicilio = command.CalleDomicilio,
-                NumeroDomicilio = command.NumeroDomicilio,
+                Domicilio = command.Domicilio,
                 PisoDepartamento = command.PisoDepartamento,
-                IdentificacionDepartamento = command.IdentificacionDepartamento,
+                Latitud = command.Latitud,
+                Longitud = command.Longitud,
                 Eliminado = false,
                 FechaCreacion = DateTime.Now,
                 UsuarioCreacion = userContext.NombreUsuario,
+
+
             };
 
             return Task.FromResult(nuevoPasajero);

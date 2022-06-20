@@ -29,6 +29,8 @@ namespace SmartBus.DataAccess.Handlers
             {
                 Nombre = command.Nombre, 
                 Direccion = command.Direccion,
+                Latitud = command.Latitud,
+                Longitud = command.Longitud,
                 UsuarioCreacion = userContext.NombreUsuario,
                 FechaCreacion = DateTime.Now,
                 Eliminado = false,
