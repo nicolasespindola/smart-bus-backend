@@ -1,6 +1,7 @@
 ﻿CREATE TABLE [dbo].[Pasajero]
 (
 	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
+    [IdEscuela] INT NOT NULL  CONSTRAINT [FK_Pasajero_Escuela] REFERENCES [dbo].[Escuela] ([Id]),
     [Nombre] VARCHAR(50) NOT NULL, 
     [Apellido] VARCHAR(50) NOT NULL, 
     [FechaNacimiento] DATE NOT NULL, 
