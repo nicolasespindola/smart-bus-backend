@@ -20,7 +20,6 @@ namespace SmartBus.DataAccess.Maps
                     e.Map(c => c.Longitude).Column("Longitud");
                 });
             });
-            References<Escuela>(x => x.Escuela, "IdEscuela");
             
             Map(x => x.PisoDepartamento).Nullable();
         }

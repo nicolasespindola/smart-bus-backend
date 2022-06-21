@@ -6,7 +6,6 @@ namespace SmartBus.DataAccess.Command
 {
     public class AgregarPasajeroCommand : IRequest<Pasajero>
     {
-        public int IdEscuela { get; set; }
         public string Nombre { get; set; }
         public string Apellido { get; set; }
         public DateTime FechaNacimiento { get; set; }

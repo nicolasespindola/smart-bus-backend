@@ -14,6 +14,5 @@ namespace SmartBus.Entities
         public virtual string Telefono { get; set; }
         public virtual Direccion Domicilio { get; set; }
         public virtual string PisoDepartamento { get; set; }
-        public virtual Escuela Escuela { get; set; }
     }
 }

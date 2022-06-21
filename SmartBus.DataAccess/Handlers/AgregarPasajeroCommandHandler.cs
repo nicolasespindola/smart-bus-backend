@@ -30,7 +30,6 @@ namespace SmartBus.DataAccess.Handlers
                 Telefono = command.Telefono,
                 Domicilio = command.Domicilio,
                 PisoDepartamento = command.PisoDepartamento,
-                Escuela = session.Get<Escuela>(command.IdEscuela),
                 Eliminado = false,
                 FechaCreacion = DateTime.Now,
                 UsuarioCreacion = userContext.NombreUsuario,
