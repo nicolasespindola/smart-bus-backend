@@ -66,6 +66,8 @@
     <Build Include="Tables\Usuario.sql" />
     <Build Include="Tables\Escuela.sql" />
     <Build Include="Tables\Chofer.sql" />
+    <Build Include="Tables\Recorrido.sql" />
+    <Build Include="Tables\RecorridoPasajero.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="SmartBus.Database.refactorlog" />
