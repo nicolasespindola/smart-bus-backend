@@ -40,6 +40,13 @@ namespace smart_bus_backend.Controllers
             return Ok(response);
         }
 
+        [HttpPut]
+        public async Task<IActionResult> Put(ModificarRecorridoCommand request)
+        {
+            var response = await mediator.Send(request);
+            return Ok(response);
+        }
+
         [HttpDelete]
         [Route("{id}")]
         public async Task<IActionResult> Delete(int id)
