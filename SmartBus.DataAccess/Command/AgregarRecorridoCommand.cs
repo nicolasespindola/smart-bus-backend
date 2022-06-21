@@ -11,7 +11,7 @@ namespace SmartBus.DataAccess.Command
     public class AgregarRecorridoCommand : IRequest<Recorrido>
     {
         public string Nombre { get; set; }
-        public bool EsRecorridoDeVuelta { get; set; }
+        public bool EsRecorridoDeIda { get; set; }
         public DateTime Horario { get; set; }
         public int IdEscuela { get; set; }
         public int IdChofer { get; set; }
