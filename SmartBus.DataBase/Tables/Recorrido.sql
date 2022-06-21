@@ -5,7 +5,7 @@
     [IdEscuela] INT NOT NULL CONSTRAINT [FK_Escuela] REFERENCES [dbo].[Escuela] ([Id]),
     [Nombre] VARCHAR(150) NOT NULL, 
     [Horario] DATETIME NOT NULL, 
-    [EsRecorridoDeVuelta] BIT NOT NULL, 
+    [EsRecorridoDeIda] BIT NOT NULL, 
     [AñoCreacion] INT NOT NULL,
     [UsuarioCreacion] VARCHAR(50) NOT NULL, 
     [FechaCreacion] DATETIME NOT NULL, 

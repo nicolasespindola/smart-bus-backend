@@ -13,7 +13,7 @@ namespace SmartBus.DataAccess.Maps
             : base()
         {
             Map(x => x.Nombre);
-            Map(x => x.EsRecorridoDeVuelta);
+            Map(x => x.EsRecorridoDeIda);
             Map(x => x.Horario);
             Map(x => x.AñoCreacion);
             References(x => x.Escuela, "IdEscuela");

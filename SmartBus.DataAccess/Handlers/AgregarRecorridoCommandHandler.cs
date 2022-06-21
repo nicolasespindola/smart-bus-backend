@@ -25,7 +25,7 @@ namespace SmartBus.DataAccess.Handlers
             var nuevoRecorrido = new Recorrido
             {
                 Nombre = command.Nombre,
-                EsRecorridoDeVuelta = command.EsRecorridoDeVuelta,
+                EsRecorridoDeIda = command.EsRecorridoDeIda,
                 Horario = command.Horario,
                 Escuela = session.Get<Escuela>(command.IdEscuela),
                 Chofer = session.Get<Chofer>(command.IdChofer),
