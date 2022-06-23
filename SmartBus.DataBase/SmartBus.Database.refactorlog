@@ -56,4 +56,11 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="EsRecorridoDeIda" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="6556902d-61d3-4e39-8245-25b1fad88a29" ChangeDateTime="06/23/2022 03:29:21">
+    <Property Name="ElementName" Value="[dbo].[EstadoDeCuenta].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[EstadoDeCuenta]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="IdRecorrido" />
+  </Operation>
 </Operations>

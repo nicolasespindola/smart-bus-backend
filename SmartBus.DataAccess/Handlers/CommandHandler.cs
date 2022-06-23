@@ -26,14 +26,21 @@ namespace SmartBus.DataAccess.Handlers
 
             using(var transaccion = session.BeginTransaction())
             {
+                PreResolverCommand(command);
+
                 respuesta = await ResolverCommand(command, cancellationToken);
                 
                 session.SaveOrUpdate(respuesta);
+
+                PostResolverCommand(respuesta);
                 
                 transaccion.Commit();
             }
 
             return respuesta;
         }
+
+        public virtual void PostResolverCommand(TRespuesta respuesta) { }
+        public virtual void PreResolverCommand(TCommand command) { }
     }
 }

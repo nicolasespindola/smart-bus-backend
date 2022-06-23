@@ -8,16 +8,19 @@ using SmartBus.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using MediatR;
 
 namespace SmartBus.DataAccess.Handlers
 {
     public class AgregarRecorridoCommandHandler : CommandHandler<AgregarRecorridoCommand, Recorrido>
     {
         private readonly IWebUserContext userContext;
-        public AgregarRecorridoCommandHandler(ISession _session, IWebUserContext _userContext)
+        private readonly IMediator mediator;
+        public AgregarRecorridoCommandHandler(ISession _session, IWebUserContext _userContext, IMediator _mediator)
             : base(_session)
         {
             userContext = _userContext;
+            mediator = _mediator;
         }
 
         public override Task<Recorrido> ResolverCommand(AgregarRecorridoCommand command, CancellationToken cancellationToken)
@@ -37,6 +40,14 @@ namespace SmartBus.DataAccess.Handlers
             };
 
             return Task.FromResult(nuevoRecorrido);
+        }
+
+        public override void PostResolverCommand(Recorrido respuesta)
+        {
+            foreach(Pasajero pasajero in respuesta.Pasajeros)
+            {   
+                mediator.Send(new AgregarEstadoDeCuentaCommand(respuesta.Id, pasajero.Id));
+            }
         }
 
         private List<Pasajero> SetearPasajeros(IEnumerable<int> idPasajeros)

@@ -12,8 +12,13 @@ namespace SmartBus.DataAccess.Maps
     {
         public BaseEntityMap()
         {
-            Id(x => x.Id);
+            DefinirId();
             Map(x => x.Eliminado);
+        }
+
+        public virtual void DefinirId()
+        {
+            Id(x => x.Id);
         }
     }
 }

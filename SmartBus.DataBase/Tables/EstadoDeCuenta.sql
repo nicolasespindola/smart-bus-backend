@@ -1,0 +1,25 @@
+﻿CREATE TABLE [dbo].[EstadoDeCuenta]
+(
+    [Id] INT NOT NULL PRIMARY KEY IDENTITY,
+	[IdRecorrido] INT NOT NULL CONSTRAINT [FK_EstadoDeCuenta_Recorrido] REFERENCES [dbo].[Recorrido] ([Id]), 
+    [IdPasajero] INT NOT NULL  CONSTRAINT [FK_EstadoDeCuenta_Pasajero] REFERENCES [dbo].[Pasajero] ([Id]),  
+    [PagoEnero] BIT NOT NULL, 
+    [PagoFebrero] BIT NOT NULL, 
+    [PagoMarzo] BIT NOT NULL, 
+    [PagoAbril] BIT NOT NULL, 
+    [PagoMayo] BIT NOT NULL, 
+    [PagoJunio] BIT NOT NULL, 
+    [PagoJulio] BIT NOT NULL, 
+    [PagoAgosto] BIT NOT NULL, 
+    [PagoSeptiembre] BIT NOT NULL, 
+    [PagoOctubre] BIT NOT NULL, 
+    [PagoNoviembre] BIT NOT NULL, 
+    [PagoDiciembre] BIT NOT NULL, 
+    [UsuarioCreacion] VARCHAR(50) NOT NULL, 
+    [FechaCreacion] DATETIME NOT NULL, 
+    [UsuarioModificacion] VARCHAR(50) NULL, 
+    [FechaModificacion] DATETIME NULL, 
+    [UsuarioEliminacion] VARCHAR(50) NULL, 
+    [FechaEliminacion] DATETIME NULL, 
+    [Eliminado] BIT NOT NULL
+)
