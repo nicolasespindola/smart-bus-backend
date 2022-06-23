@@ -44,9 +44,19 @@ namespace SmartBus.DataAccess.Handlers
 
         public override void PostResolverCommand(Recorrido respuesta)
         {
-            foreach(Pasajero pasajero in respuesta.Pasajeros)
-            {   
-                mediator.Send(new AgregarEstadoDeCuentaCommand(respuesta.Id, pasajero.Id));
+            foreach (Pasajero pasajero in respuesta.Pasajeros)
+            {
+                if (session.Query<EstadoDeCuenta>().Any(ec => !ec.Eliminado && ec.Pasajero.Id == pasajero.Id && ec.Recorrido.Id == respuesta.Id))
+                {
+                    throw new ApplicationException($"Ya existe un estado de cuenta para el pasajero Id {pasajero.Id} y recorrido Id {respuesta.Id}.");
+                }
+
+                var nuevoEstadoDeCuenta = new EstadoDeCuenta(respuesta, pasajero);
+                nuevoEstadoDeCuenta.UsuarioCreacion = userContext.NombreUsuario;
+                nuevoEstadoDeCuenta.FechaCreacion = DateTime.Now;
+                nuevoEstadoDeCuenta.Eliminado = false;
+
+                session.SaveOrUpdate(nuevoEstadoDeCuenta);
             }
         }
 
