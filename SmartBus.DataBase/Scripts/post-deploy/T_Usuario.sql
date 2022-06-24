@@ -5,7 +5,8 @@ USING
     FROM 
     (
         VALUES
-        ( 'nespindola@lightercapital.com', '$2a$11$iyx6mEJTMdAqjPoh42L5jufeH2tIcKG8UV47mdVW96Me0h4GZ6X5S', '0')
+        ( 'nespindola@lightercapital.com', '$2a$11$iyx6mEJTMdAqjPoh42L5jufeH2tIcKG8UV47mdVW96Me0h4GZ6X5S', '0'),
+        ( 'string', '$2a$11$DHpVOp.G5h82iZLJ8QqFlul8bcLmxYp/DGxMtvS6sxtyGAwUIpDAO', '0')
 
     ) i ([Email], [Contraseña], [Eliminado])
 ) ii ON ( ii.[Email] = t.[Email])

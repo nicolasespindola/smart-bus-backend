@@ -30,7 +30,7 @@ namespace SmartBus.DataAccess.Handlers
                 Nombre = command.Nombre,
                 EsRecorridoDeIda = command.EsRecorridoDeIda,
                 Horario = command.Horario,
-                Escuela = session.Get<Escuela>(command.IdEscuela),
+                Escuela = command.IdEscuela.HasValue ? session.Get<Escuela>(command.IdEscuela) : null,
                 Chofer = session.Get<Chofer>(command.IdChofer),
                 AñoCreacion = DateTime.Now.Year,
                 UsuarioCreacion = userContext.NombreUsuario,

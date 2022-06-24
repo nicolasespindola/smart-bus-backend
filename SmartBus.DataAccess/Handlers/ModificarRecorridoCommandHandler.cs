@@ -26,7 +26,7 @@ namespace SmartBus.DataAccess.Handlers
             recorrido.Nombre = command.Nombre;
             recorrido.EsRecorridoDeIda = command.EsRecorridoDeIda;
             recorrido.Horario = command.Horario;
-            recorrido.Escuela = session.Get<Escuela>(command.IdEscuela);
+            recorrido.Escuela = command.IdEscuela.HasValue ? session.Get<Escuela>(command.IdEscuela) : null;
             recorrido.AñoCreacion = DateTime.Now.Year;
             recorrido.UsuarioModificacion = userContext.NombreUsuario;
             recorrido.FechaModificacion = DateTime.Now;
