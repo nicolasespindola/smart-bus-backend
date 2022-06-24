@@ -30,13 +30,13 @@ namespace SmartBus.DataAccess.Handlers
 
         private IEnumerable<Pasajero> ObtenerPasajerosPresentesHoy(int idRecorrido, IEnumerable<Pasajero> pasajerosFiltrado)
         {
-            return pasajerosFiltrado.Where(p => !p.Eventualidades.Any(e => e.IdRecorrido == idRecorrido && DateTime.Now >= e.FechaInicio && DateTime.Now <= e.FechaFin && e.Direccion == null));
+            return pasajerosFiltrado.Where(p => !p.Eventualidades.Any(e => !e.Eliminado && e.IdRecorrido == idRecorrido && DateTime.Now >= e.FechaInicio && DateTime.Now <= e.FechaFin && e.Direccion == null));
         }
 
         private IEnumerable<Pasajero> ObtenerCambiosDeDomicilio(int idRecorrido, IEnumerable<Pasajero> pasajeros)
         {
             return pasajeros.Select(p => {
-                var eventualidad = p.Eventualidades.FirstOrDefault(e => e.IdRecorrido == idRecorrido && DateTime.Now >= e.FechaInicio && DateTime.Now <= e.FechaFin);
+                var eventualidad = p.Eventualidades.FirstOrDefault(e => !e.Eliminado && e.IdRecorrido == idRecorrido && DateTime.Now >= e.FechaInicio && DateTime.Now <= e.FechaFin);
                 if (eventualidad == null)
                     return p;
                 else
