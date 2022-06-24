@@ -29,5 +29,21 @@ namespace SmartBus.DataAccess.Handlers
 
             return Task.FromResult(pasajero);
         }
+
+        public override void PostResolverCommand(Pasajero respuesta)
+        {
+            var RecorridosAsociados = session.Query<Recorrido>()
+                .Where(r => !r.Eliminado 
+                    && r.Pasajeros.Any(p => p.Id == respuesta.Id));
+
+            foreach(var recorrido in RecorridosAsociados)
+            {
+                recorrido.Pasajeros = recorrido.Pasajeros.Where(p => p.Id != respuesta.Id);
+                recorrido.UsuarioModificacion = userContext.NombreUsuario;
+                recorrido.FechaModificacion = DateTime.Now;
+
+                session.SaveOrUpdate(recorrido);
+            }
+        }
     }
 }
