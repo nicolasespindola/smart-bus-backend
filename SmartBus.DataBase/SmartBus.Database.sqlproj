@@ -69,6 +69,7 @@
     <Build Include="Tables\Recorrido.sql" />
     <Build Include="Tables\RecorridoPasajero.sql" />
     <Build Include="Tables\EstadoDeCuenta.sql" />
+    <None Include="Scripts\post-deploy\T_Usuario.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="SmartBus.Database.refactorlog" />
