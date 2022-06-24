@@ -20,6 +20,7 @@ namespace SmartBus.DataAccess.Maps
                     e.Map(c => c.Longitude).Column("Longitud");
                 });
             });
+            HasMany(x => x.Eventualidades).KeyColumn("IdPasajero");
             
             Map(x => x.PisoDepartamento).Nullable();
         }
