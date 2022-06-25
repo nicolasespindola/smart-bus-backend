@@ -33,19 +33,19 @@ namespace smart_bus_backend.Controllers
             return Ok(response);
         }
 
-        //[HttpPut]
-        //public async Task<IActionResult> Put(ModificarEventualidadCommand request)
-        //{
-        //    var response = await mediator.Send(request);
-        //    return Ok(response);
-        //}
+        [HttpPut]
+        public async Task<IActionResult> Put(ModificarEventualidadCommand request)
+        {
+            var response = await mediator.Send(request);
+            return Ok(response);
+        }
 
-        //[HttpDelete]
-        //[Route("{id}")]
-        //public async Task<IActionResult> Delete(int id)
-        //{
-        //    var response = await mediator.Send(new EliminarEventualidadCommand(id));
-        //    return Ok(response);
-        //}
+        [HttpDelete]
+        [Route("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var response = await mediator.Send(new EliminarEventualidadCommand(id));
+            return Ok(response);
+        }
     }
 }
