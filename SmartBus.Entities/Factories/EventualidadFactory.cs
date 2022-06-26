@@ -17,11 +17,7 @@ namespace SmartBus.Entities.Factories
 
         public Eventualidad Crear(int idRecorrido, int idPasajero, DateTime fechaInicio, DateTime fechaFin, Direccion direccion, string usuarioCreacion)
         {
-            if (fechaInicio > fechaFin)
-                throw new ApplicationException("La fecha de inicio debe ser menor a la fecha de fin");
-
-            if (ExisteEventualidadEnEseRangoDeFechas(idRecorrido, idPasajero, fechaInicio, fechaFin))
-                throw new ApplicationException("Ya existe una eventualidad dentro de este rango de fechas para este recorrido y pasajero.");
+            ValidarFechas(fechaInicio, fechaFin, idRecorrido, idPasajero);
 
             return new Eventualidad
             {
@@ -42,12 +38,8 @@ namespace SmartBus.Entities.Factories
 
             if (eventualidad == null)
                 throw new ApplicationException($"No se encontro una eventualidad con Id {id}");
-
-            if (fechaInicio > fechaFin)
-                throw new ApplicationException("La fecha de inicio debe ser menor a la fecha de fin");
-
-            if (ExisteEventualidadEnEseRangoDeFechas(eventualidad.IdRecorrido, eventualidad.IdPasajero, fechaInicio, fechaFin))
-                throw new ApplicationException("Ya existe una eventualidad dentro de este rango de fechas para este recorrido y pasajero.");
+            
+            ValidarFechas(fechaInicio, fechaFin, eventualidad.IdRecorrido, eventualidad.IdPasajero);
 
             eventualidad.FechaInicio = fechaInicio;
             eventualidad.FechaFin = fechaFin;
@@ -56,6 +48,15 @@ namespace SmartBus.Entities.Factories
             eventualidad.FechaModificacion = DateTime.Now;
 
             return eventualidad;
+        }
+
+        private void ValidarFechas(DateTime fechaInicio, DateTime fechaFin, int idRecorrido, int idPasajero)
+        {
+            if (fechaInicio > fechaFin)
+                throw new ApplicationException("La fecha de inicio debe ser menor a la fecha de fin");
+
+            if (ExisteEventualidadEnEseRangoDeFechas(idRecorrido, idPasajero, fechaInicio, fechaFin))
+                throw new ApplicationException("Ya existe una eventualidad dentro de este rango de fechas para este recorrido y pasajero.");
         }
 
         private bool ExisteEventualidadEnEseRangoDeFechas(int idRecorrido, int idPasajero, DateTime fechaInicio, DateTime fechaFin)
