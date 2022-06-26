@@ -8,5 +8,7 @@ namespace SmartBus.Entities
 {
     public interface IBaseEntity
     {
+        public int Id { get; set; }
+        public bool Eliminado { get; set; }
     }
 }
