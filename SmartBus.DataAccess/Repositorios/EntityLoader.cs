@@ -19,7 +19,7 @@ namespace SmartBus.DataAccess.Repositorios
             return session.Get<T>(id);
         }
 
-        public IQueryable<T> Where<T>() 
+        public IQueryable<T> Query<T>() 
             where T : IBaseEntity
         {
             return session.Query<T>();

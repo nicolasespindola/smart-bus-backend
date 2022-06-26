@@ -4,9 +4,6 @@ using NHibernate;
 using SmartBus.DataAccess.Command;
 using SmartBus.DataAccess.Context;
 using SmartBus.Entities;
-using System;
-using System.Linq;
-using SmartBus.Entities.Base;
 using SmartBus.Entities.Factories;
 
 namespace SmartBus.DataAccess.Handlers
