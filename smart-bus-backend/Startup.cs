@@ -66,6 +66,7 @@ namespace smart_bus_backend
 
             services.AddScoped<IEntityLoader, EntityLoader>();
             services.AddScoped<IEventualidadFactory, EventualidadFactory>();
+            services.AddScoped<IRecorridoFactory, RecorridoFactory>();
 
             services.AddMediatR(typeof(NHibernateConfigurationHelper).Assembly);
             services.AddMediatR(typeof(JwtUtils).Assembly);
