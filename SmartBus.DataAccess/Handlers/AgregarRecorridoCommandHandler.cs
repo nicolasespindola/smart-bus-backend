@@ -15,12 +15,10 @@ namespace SmartBus.DataAccess.Handlers
     public class AgregarRecorridoCommandHandler : CommandHandler<AgregarRecorridoCommand, Recorrido>
     {
         private readonly IWebUserContext userContext;
-        private readonly IMediator mediator;
-        public AgregarRecorridoCommandHandler(ISession _session, IWebUserContext _userContext, IMediator _mediator)
+        public AgregarRecorridoCommandHandler(ISession _session, IWebUserContext _userContext)
             : base(_session)
         {
             userContext = _userContext;
-            mediator = _mediator;
         }
 
         public override Task<Recorrido> ResolverCommand(AgregarRecorridoCommand command, CancellationToken cancellationToken)
@@ -46,15 +44,17 @@ namespace SmartBus.DataAccess.Handlers
         {
             foreach (Pasajero pasajero in respuesta.Pasajeros)
             {
-                if (session.Query<EstadoDeCuenta>().Any(ec => !ec.Eliminado && ec.Pasajero.Id == pasajero.Id && ec.Recorrido.Id == respuesta.Id))
+                if (session.Query<EstadoDeCuenta>().Any(ec => !ec.Eliminado && ec.IdPasajero == pasajero.Id && ec.IdRecorrido == respuesta.Id))
                 {
                     throw new ApplicationException($"Ya existe un estado de cuenta para el pasajero Id {pasajero.Id} y recorrido Id {respuesta.Id}.");
                 }
 
-                var nuevoEstadoDeCuenta = new EstadoDeCuenta(respuesta, pasajero);
-                nuevoEstadoDeCuenta.UsuarioCreacion = userContext.NombreUsuario;
-                nuevoEstadoDeCuenta.FechaCreacion = DateTime.Now;
-                nuevoEstadoDeCuenta.Eliminado = false;
+                var nuevoEstadoDeCuenta = new EstadoDeCuenta(respuesta.Id, pasajero.Id)
+                {
+                    UsuarioCreacion = userContext.NombreUsuario,
+                    FechaCreacion = DateTime.Now,
+                    Eliminado = false
+                };
 
                 session.SaveOrUpdate(nuevoEstadoDeCuenta);
             }

@@ -51,7 +51,7 @@ namespace smart_bus_backend
                                     Id = "Bearer"
                             }
                         },
-                        new string[] {}
+                        System.Array.Empty<string>()
                     }
                 });
             });

@@ -51,20 +51,20 @@ namespace SmartBus.DataAccess.Handlers
             var idPasajerosEliminados = pasajerosViejo.Except(pasajerosNuevo);
             var idPasajerosAgregados = pasajerosNuevo.Except(pasajerosViejo);
 
-            if(idPasajerosEliminados.Count() > 0)
+            if(idPasajerosEliminados.Any())
                 EliminarEstadosDeCuenta(command.Id, idPasajerosEliminados);
 
-            if (idPasajerosAgregados.Count() > 0)
+            if (idPasajerosAgregados.Any())
                 AgregarEstadosDeCuenta(command.Id, idPasajerosAgregados);
         }
 
         private void EliminarEstadosDeCuenta(int idRecorrido, IEnumerable<int> idPasajerosEliminados)
         {
             var estadosDeCuentaAEliminar = session.Query<EstadoDeCuenta>().Where(ec => !ec.Eliminado 
-                && ec.Recorrido.Id == idRecorrido 
-                && idPasajerosEliminados.Contains(ec.Pasajero.Id));
+                && ec.IdRecorrido == idRecorrido 
+                && idPasajerosEliminados.Contains(ec.IdPasajero));
 
-            if(estadosDeCuentaAEliminar.Count() > 0)
+            if(estadosDeCuentaAEliminar.Any())
             {
                 foreach (var estadoDeCuenta in estadosDeCuentaAEliminar)
                 {
@@ -80,19 +80,18 @@ namespace SmartBus.DataAccess.Handlers
         {
             foreach (var idPasajero in idPasajerosAgregados)
             {
-                if (session.Query<EstadoDeCuenta>().Any(ec => !ec.Eliminado && ec.Recorrido.Id == idRecorrido && ec.Pasajero.Id == idPasajero))
+                if (session.Query<EstadoDeCuenta>().Any(ec => !ec.Eliminado && ec.IdRecorrido == idRecorrido && ec.IdPasajero == idPasajero))
                 {
                     throw new ApplicationException(
                         $"Error al intentar generar un nuevo estado de cuenta para el pasajero id = {idPasajero} y recorrido id = {idRecorrido}. " +
                         $"Se encontro un estado de cuenta ya existente.");
                 }
 
-                var recorrido = session.Get<Recorrido>(idRecorrido);
-                var pasajero = session.Get<Pasajero>(idPasajero);
-
-                var estadoDeCuenta = new EstadoDeCuenta(recorrido, pasajero);
-                estadoDeCuenta.UsuarioCreacion = userContext.NombreUsuario;
-                estadoDeCuenta.FechaCreacion = DateTime.Now;
+                var estadoDeCuenta = new EstadoDeCuenta(idRecorrido, idPasajero)
+                {
+                    UsuarioCreacion = userContext.NombreUsuario,
+                    FechaCreacion = DateTime.Now
+                };
 
                 session.SaveOrUpdate(estadoDeCuenta);
             }

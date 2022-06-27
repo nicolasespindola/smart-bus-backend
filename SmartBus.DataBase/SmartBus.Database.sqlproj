@@ -71,6 +71,7 @@
     <Build Include="Tables\EstadoDeCuenta.sql" />
     <None Include="Scripts\post-deploy\T_Usuario.sql" />
     <Build Include="Tables\Eventualidad.sql" />
+    <Build Include="Tables\TipoDeUsuario.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="SmartBus.Database.refactorlog" />
@@ -80,5 +81,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="SmartBus.Database.publish.xml" />
+    <None Include="Scripts\post-deploy\T_TipoDeUsuario.sql" />
   </ItemGroup>
 </Project>

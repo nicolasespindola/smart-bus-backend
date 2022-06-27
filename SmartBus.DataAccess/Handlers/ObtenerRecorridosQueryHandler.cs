@@ -20,7 +20,8 @@ namespace SmartBus.DataAccess.Handlers
 
         public Task<List<Recorrido>> Handle(ObtenerRecorridosQuery request, CancellationToken cancellationToken)
         {
-            return Task.FromResult(session.Query<Recorrido>().Where(p => !p.Eliminado).ToList());
+            var recorridos = session.Query<Recorrido>().Where(p => !p.Eliminado).ToList();
+            return Task.FromResult(recorridos);
         }
     }
 }

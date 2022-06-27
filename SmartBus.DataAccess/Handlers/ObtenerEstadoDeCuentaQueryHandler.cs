@@ -23,8 +23,8 @@ namespace SmartBus.DataAccess.Handlers
             return Task.FromResult(session.Query<EstadoDeCuenta>()
                 .Where(
                     p => !p.Eliminado
-                    && p.Recorrido.Id == request.IdRecorrido 
-                    && p.Pasajero.Id == request.IdPasajero
+                    && p.IdRecorrido == request.IdRecorrido 
+                    && p.IdPasajero == request.IdPasajero
                 ).Single());
         }
     }

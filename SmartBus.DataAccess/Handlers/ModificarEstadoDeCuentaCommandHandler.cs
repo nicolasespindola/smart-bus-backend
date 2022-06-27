@@ -22,8 +22,8 @@ namespace SmartBus.DataAccess.Handlers
         {
             var estadoDeCuenta = session.Query<EstadoDeCuenta>()
                 .Single(ec => !ec.Eliminado
-                    && ec.Recorrido.Id == command.IdRecorrido
-                    && ec.Pasajero.Id == command.IdPasajero);
+                    && ec.IdRecorrido == command.IdRecorrido
+                    && ec.IdPasajero == command.IdPasajero);
 
             estadoDeCuenta.PagoEnero = command.PagoEnero;
             estadoDeCuenta.PagoFebrero = command.PagoFebrero;

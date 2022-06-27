@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SmartBus.Entities.Enumerators;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,5 +14,6 @@ namespace SmartBus.Entities
 
         [JsonIgnore]
         public virtual string Contraseña { get; set; }
+        public virtual TipoDeUsuario TipoDeUsuario { get; set; }
     }
 }

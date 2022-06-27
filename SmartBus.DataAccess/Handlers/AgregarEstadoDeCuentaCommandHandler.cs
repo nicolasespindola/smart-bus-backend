@@ -20,15 +20,15 @@ namespace SmartBus.DataAccess.Handlers
 
         public override Task<EstadoDeCuenta> ResolverCommand(AgregarEstadoDeCuentaCommand command, CancellationToken cancellationToken)
         {
-            if (session.Query<EstadoDeCuenta>().Any(ec => !ec.Eliminado && ec.Pasajero.Id == command.IdPasajero && ec.Recorrido.Id == command.IdRecorrido))
+            if (session.Query<EstadoDeCuenta>().Any(ec => !ec.Eliminado && ec.IdPasajero == command.IdPasajero && ec.IdRecorrido == command.IdRecorrido))
             {
                 throw new ApplicationException($"Ya existe un estado de cuenta para el pasajero Id {command.IdPasajero} y recorrido Id {command.IdRecorrido}.");
             }
 
             var nuevoEstadoDeCuenta = new EstadoDeCuenta
             {
-                Recorrido = session.Get<Recorrido>(command.IdRecorrido),
-                Pasajero = session.Get<Pasajero>(command.IdPasajero),
+                IdRecorrido = command.IdRecorrido,
+                IdPasajero = command.IdPasajero,
                 PagoEnero = command.PagoEnero,
                 PagoFebrero = command.PagoFebrero,
                 PagoMarzo = command.PagoMarzo,

@@ -13,8 +13,8 @@ namespace SmartBus.DataAccess.Maps
         public EstadoDeCuentaMap()
             : base()
         {
-            References(x => x.Recorrido).Column("IdRecorrido");
-            References(x => x.Pasajero).Column("IdPasajero");
+            Map(x => x.IdRecorrido);
+            Map(x => x.IdPasajero);
             Map(x => x.PagoEnero);
             Map(x => x.PagoFebrero);
             Map(x => x.PagoMarzo);

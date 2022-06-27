@@ -12,7 +12,7 @@ namespace smart_bus_backend.Controllers
     [Route("[controller]")]
     public class RecorridoController : ControllerBase
     {
-        private IMediator mediator;
+        private readonly IMediator mediator;
         public RecorridoController(IMediator _mediator)
         {
             mediator = _mediator;

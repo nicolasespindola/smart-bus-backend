@@ -8,8 +8,8 @@ namespace SmartBus.Entities
 {
     public class EstadoDeCuenta : BaseEntityConAuditoria
     {
-        public virtual Recorrido Recorrido { get; set; }
-        public virtual Pasajero Pasajero { get; set; }
+        public virtual int IdRecorrido { get; set; }
+        public virtual int IdPasajero { get; set; }
         public virtual bool PagoEnero { get; set; }
         public virtual bool PagoFebrero { get; set; }
         public virtual bool PagoMarzo { get; set; }
@@ -25,10 +25,10 @@ namespace SmartBus.Entities
 
         public EstadoDeCuenta() { }
 
-        public EstadoDeCuenta(Recorrido recorrido, Pasajero pasajero)
+        public EstadoDeCuenta(int idRecorrido, int idPasajero)
         {
-            Recorrido = recorrido;
-            Pasajero = pasajero;
+            IdRecorrido = idRecorrido;
+            IdPasajero = idPasajero;
             SetearMeses();
         }
 
