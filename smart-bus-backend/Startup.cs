@@ -1,11 +1,9 @@
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using NHibernate;
 using smart_bus_backend.Context;
@@ -13,10 +11,9 @@ using smart_bus_backend.Middleware;
 using SmartBus.Authentification;
 using SmartBus.DataAccess.Context;
 using SmartBus.DataAccess.Helpers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using SmartBus.DataAccess.Repositorios;
+using SmartBus.Entities;
+using SmartBus.Entities.Factories;
 
 namespace smart_bus_backend
 {
@@ -66,6 +63,9 @@ namespace smart_bus_backend
             services.AddScoped<ISession>(factory => sessionFactory.OpenSession());
             services.AddScoped<IJwtUtils, JwtUtils>();
             services.AddScoped<IWebUserContext, WebUserContext>();
+
+            services.AddScoped<IEntityLoader, EntityLoader>();
+            services.AddScoped<IEventualidadFactory, EventualidadFactory>();
 
             services.AddMediatR(typeof(NHibernateConfigurationHelper).Assembly);
             services.AddMediatR(typeof(JwtUtils).Assembly);
