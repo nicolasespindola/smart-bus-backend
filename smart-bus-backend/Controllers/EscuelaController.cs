@@ -12,7 +12,7 @@ namespace smart_bus_backend.Controllers
     [Route("[controller]")]
     public class EscuelaController : ControllerBase
     {
-        private IMediator mediator;
+        private readonly IMediator mediator;
         public EscuelaController(IMediator _mediator)
         {
             mediator = _mediator;

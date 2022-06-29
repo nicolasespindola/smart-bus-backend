@@ -1,4 +1,5 @@
 ﻿using SmartBus.Entities;
+using SmartBus.Entities.Enumerators;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,7 @@ namespace SmartBus.DataAccess.Maps
         {
             Map(x => x.Email);
             Map(x => x.Contraseña);
+            Map(x => x.TipoDeUsuario, "IdTipoDeUsuario").CustomType<TipoDeUsuario>();
         }
     }
 }

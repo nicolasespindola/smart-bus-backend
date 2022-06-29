@@ -13,5 +13,7 @@ namespace SmartBus.Entities.Factories
 
         public IQueryable<T> Query<T>()
             where T : IBaseEntity;
+        T Add<T>(T nuevoRecorrido)
+            where T : IBaseEntity;
     }
 }

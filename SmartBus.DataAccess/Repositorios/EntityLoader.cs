@@ -13,6 +13,12 @@ namespace SmartBus.DataAccess.Repositorios
             session = _session;
         }
 
+        public T Add<T>(T nuevoRecorrido) where T : IBaseEntity
+        {
+            session.SaveOrUpdate(nuevoRecorrido);
+            return nuevoRecorrido;
+        }
+
         public T Load<T>(int id)
             where T : IBaseEntity
         {

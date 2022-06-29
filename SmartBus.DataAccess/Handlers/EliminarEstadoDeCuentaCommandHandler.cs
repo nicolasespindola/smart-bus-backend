@@ -20,8 +20,8 @@ namespace SmartBus.DataAccess.Handlers
         public override Task<EstadoDeCuenta> ResolverCommand(EliminarEstadoDeCuentaCommand command, CancellationToken cancellationToken)
         {
             var escuela = session.Query<EstadoDeCuenta>().Single(ec => !ec.Eliminado 
-                && ec.Recorrido.Id == command.IdRecorrido 
-                && ec.Pasajero.Id == command.IdPasajero);
+                && ec.IdRecorrido == command.IdRecorrido 
+                && ec.IdPasajero == command.IdPasajero);
 
             escuela.Eliminar(userContext.NombreUsuario);
 
