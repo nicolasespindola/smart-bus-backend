@@ -21,6 +21,11 @@ namespace SmartBus.DataAccess.Maps
                 });
             });
             HasMany(x => x.Eventualidades).KeyColumn("IdPasajero");
+            HasManyToMany(x => x.Tutores)
+                .Cascade.All()
+                .ParentKeyColumn("IdPasajero")
+                .ChildKeyColumn("IdUsuario")
+                .Table("PasajeroTutor");
             
             Map(x => x.PisoDepartamento).Nullable();
         }

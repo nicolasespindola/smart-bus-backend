@@ -15,5 +15,6 @@ namespace SmartBus.Entities
         public virtual Direccion Domicilio { get; set; }
         public virtual string PisoDepartamento { get; set; }
         public virtual IEnumerable<Eventualidad> Eventualidades { get; set; }
+        public virtual IEnumerable<Usuario> Tutores { get; set; }
     }
 }
