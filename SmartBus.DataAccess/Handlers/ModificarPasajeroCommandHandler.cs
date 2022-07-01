@@ -7,30 +7,33 @@ using SmartBus.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using SmartBus.Entities.Factories;
 
 namespace SmartBus.DataAccess.Handlers
 {
     public class ModificarPasajeroCommandHandler : CommandHandler<ModificarPasajeroCommand, Pasajero>
     {
         private readonly IWebUserContext userContext;
-        public ModificarPasajeroCommandHandler(ISession _session, IWebUserContext _userContext)
+        private readonly IPasajeroFactory pasajeroFactory;
+
+        public ModificarPasajeroCommandHandler(ISession _session, IWebUserContext _userContext, IPasajeroFactory _pasajeroFactory)
             : base(_session)
         {
             userContext = _userContext;
+            pasajeroFactory = _pasajeroFactory;
         }
 
         public override Task<Pasajero> ResolverCommand(ModificarPasajeroCommand command, CancellationToken cancellationToken)
         {
-            var pasajero = session.Get<Pasajero>(command.Id);
-
-            pasajero.Nombre = command.Nombre;
-            pasajero.Apellido = command.Apellido;
-            pasajero.FechaNacimiento = command.FechaNacimiento;
-            pasajero.Telefono = command.Telefono;
-            pasajero.Domicilio = command.Domicilio;
-            pasajero.PisoDepartamento = command.PisoDepartamento;
-            pasajero.UsuarioModificacion = userContext.NombreUsuario;
-            pasajero.FechaModificacion = DateTime.Now;
+            var pasajero = pasajeroFactory.Modificar(command.Id, 
+                                                     command.Nombre, 
+                                                     command.Apellido, 
+                                                     command.FechaNacimiento, 
+                                                     command.Telefono,
+                                                     command.Domicilio, 
+                                                     command.PisoDepartamento,
+                                                     command.EmailTutores, 
+                                                     userContext.NombreUsuario);
 
             return Task.FromResult(pasajero);
         }
