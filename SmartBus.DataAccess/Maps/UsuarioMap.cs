@@ -12,6 +12,8 @@ namespace SmartBus.DataAccess.Maps
     {
         public UsuarioMap() : base()
         {
+            Map(x => x.Nombre);
+            Map(x => x.Apellido);
             Map(x => x.Email);
             Map(x => x.Contraseña);
             Map(x => x.TipoDeUsuario, "IdTipoDeUsuario").CustomType<TipoDeUsuario>();
