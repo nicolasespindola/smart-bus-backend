@@ -26,8 +26,11 @@ namespace SmartBus.DataAccess.Handlers
 
             var nuevoUsuario = new Usuario
             {
+                Nombre = command.Nombre,
+                Apellido = command.Apellido,
                 Email = command.Email,
                 Contraseña = BCryptNet.HashPassword(command.Contraseña),
+                TipoDeUsuario = command.TipoDeUsuario,
                 Eliminado = false
             };
 
