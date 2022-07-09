@@ -31,7 +31,7 @@ namespace SmartBus.Authentification.Handlers
 
             // authentication successful
             var token = jwtUtils.GenerateToken(usuario);
-            var respuesta = new RespuestaAutenticacionUsuario() { Id = usuario.Id, Email = usuario.Email, Token = token };
+            var respuesta = new RespuestaAutenticacionUsuario() { Id = usuario.Id, Email = usuario.Email, Token = token, IdTipoDeUsuario = ((int)usuario.TipoDeUsuario) };
 
             return Task.FromResult(respuesta);
         }
