@@ -6,7 +6,7 @@ USING
     (
         VALUES
         ( 'Nicolas', 'Espindola', 'nespindola@lightercapital.com', '$2a$11$iyx6mEJTMdAqjPoh42L5jufeH2tIcKG8UV47mdVW96Me0h4GZ6X5S', 1, '0'),
-        ( 'stringo', 'stringer', 'stringo@gmail,com', '$2a$11$DHpVOp.G5h82iZLJ8QqFlul8bcLmxYp/DGxMtvS6sxtyGAwUIpDAO', 1, '0')
+        ( 'stringo', 'stringer', 'string', '$2a$11$DHpVOp.G5h82iZLJ8QqFlul8bcLmxYp/DGxMtvS6sxtyGAwUIpDAO', 1, '0')
 
     ) i ([Nombre], [Apellido], [Email], [Contraseña], [IdTipoDeUsuario], [Eliminado])
 ) ii ON ( ii.[Email] = t.[Email])
