@@ -1,7 +1,7 @@
 ﻿CREATE TABLE [dbo].[Recorrido]
 (
 	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
-    [IdChofer] INT NOT NULL CONSTRAINT [FK_Chofer] REFERENCES [dbo].[Chofer] ([Id]), 
+    [IdChofer] INT NOT NULL CONSTRAINT [FK_Chofer] REFERENCES [dbo].[Usuario] ([Id]), 
     [IdEscuela] INT NULL CONSTRAINT [FK_Escuela] REFERENCES [dbo].[Escuela] ([Id]),
     [Nombre] VARCHAR(150) NOT NULL, 
     [Horario] DATETIME NOT NULL, 

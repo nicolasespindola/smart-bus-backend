@@ -13,7 +13,7 @@ namespace SmartBus.Entities
         public virtual DateTime Horario { get; set; }
         public virtual int AñoCreacion { get; set; }
         public virtual Escuela Escuela { get; set; }
-        public virtual Chofer Chofer { get; set; }
+        public virtual Usuario Chofer { get; set; }
         public virtual IEnumerable<Pasajero> Pasajeros { get; set; }
         public virtual IEnumerable<EstadoDeCuenta> EstadosDeCuenta { get; set; }
     }

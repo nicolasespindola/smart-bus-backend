@@ -17,13 +17,20 @@ namespace SmartBus.Entities.Factories
 
         public Recorrido Crear(string nombre, bool esRecorridoDeIda, DateTime horario, int? idEscuela, int idChofer, string usuarioCreacion, IEnumerable<int> idPasajeros)
         {
+            var usuarioChofer = entityLoader.Load<Usuario>(idChofer);
+
+            if(usuarioChofer.TipoDeUsuario != Enumerators.TipoDeUsuario.Chofer)
+            {
+                throw new ApplicationException($"El IdChofer: {idChofer} no corresponde a un usuario del tipo chofer");
+            }
+
             var nuevoRecorrido =  new Recorrido
             {
                 Nombre = nombre,
                 EsRecorridoDeIda = esRecorridoDeIda,
                 Horario = horario,
                 Escuela = idEscuela.HasValue ? entityLoader.Load<Escuela>(idEscuela.Value) : null,
-                Chofer = entityLoader.Load<Chofer>(idChofer),
+                Chofer = usuarioChofer,
                 AñoCreacion = DateTime.Now.Year,
                 UsuarioCreacion = usuarioCreacion,
                 FechaCreacion = DateTime.Now,
