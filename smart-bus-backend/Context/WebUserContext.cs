@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using SmartBus.DataAccess.Context;
 using SmartBus.Entities;
+using SmartBus.Entities.Enumerators;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,22 @@ namespace smart_bus_backend.Context
             var usuario = this.httpContext.Items["User"] as Usuario;
 
             return usuario.Email;
+        }
+
+        public int Id => this.GetId();
+        private int GetId()
+        {
+            var usuario = this.httpContext.Items["User"] as Usuario;
+
+            return usuario.Id;
+        }
+
+        public TipoDeUsuario TipoDeUsuario => this.GetTipoDeUsuario();
+        private TipoDeUsuario GetTipoDeUsuario()
+        {
+            var usuario = this.httpContext.Items["User"] as Usuario;
+
+            return usuario.TipoDeUsuario;
         }
     }
 }
