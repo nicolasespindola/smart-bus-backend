@@ -11,7 +11,7 @@ Smart Bus Mobile.
 
 - Instalar [MSSQL Server Management Studio](https://aka.ms/ssmsfullsetup)
   
-  - Para ingresar en el server local asegurarse de usar esta configuracion:
+  - Para ingresar en el server local asegurarse de usar esta configuracion: `(localdb)\MSSQLLocalDB`
     
     ![](https://i.imgur.com/QipwaIM.png)
 
