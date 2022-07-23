@@ -1,8 +1,10 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using SmartBus.Authentification.Command;
 using SmartBus.DataAccess.Command;
+using SmartBus.DataAccess.Queries;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,32 +39,20 @@ namespace smart_bus_backend.Controllers
             return Ok(new { message = "Registration successful" });
         }
 
-        //[HttpGet]
-        //public IActionResult GetAll()
-        //{
-        //    var users = _userService.GetAll();
-        //    return Ok(users);
-        //}
+        [AllowAnonymous]
+        [HttpPut("completarRegistro")]
+        public async Task<IActionResult> CompletarRegistro(ModificarUsuarioCommand command)
+        {
+            var respuesta = await mediator.Send(command);
+            return Ok(new { message = "Registration successful" });
+        }
 
-        //[HttpGet("{id}")]
-        //public IActionResult GetById(int id)
-        //{
-        //    var user = _userService.GetById(id);
-        //    return Ok(user);
-        //}
-
-        //[HttpPut("{id}")]
-        //public IActionResult Update(int id, UpdateRequest model)
-        //{
-        //    _userService.Update(id, model);
-        //    return Ok(new { message = "User updated successfully" });
-        //}
-
-        //[HttpDelete("{id}")]
-        //public IActionResult Delete(int id)
-        //{
-        //    _userService.Delete(id);
-        //    return Ok(new { message = "User deleted successfully" });
-        //}
+        [AllowAnonymous]
+        [HttpGet("verificar-mail")]
+        public async Task<IActionResult> VerificarMail([FromQuery] VerificarMailUsuarioQuery query)
+        {
+            var respuesta = await mediator.Send(query);
+            return Ok(respuesta);
+        }
     }
 }
