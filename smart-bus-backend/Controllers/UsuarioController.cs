@@ -40,6 +40,14 @@ namespace smart_bus_backend.Controllers
         }
 
         [AllowAnonymous]
+        [HttpPut("completarRegistro")]
+        public async Task<IActionResult> CompletarRegistro(ModificarUsuarioCommand command)
+        {
+            var respuesta = await mediator.Send(command);
+            return Ok(new { message = "Registration successful" });
+        }
+
+        [AllowAnonymous]
         [HttpGet("verificar-mail")]
         public async Task<IActionResult> VerificarMail([FromQuery] VerificarMailUsuarioQuery query)
         {
