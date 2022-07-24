@@ -20,7 +20,7 @@ namespace SmartBus.DataAccess.Handlers
 
         public Task<List<HistorialRecorrido>> Handle(ObtenerHistorialRecorridosQuery request, CancellationToken cancellationToken)
         {
-            return Task.FromResult(session.Query<HistorialRecorrido>().Where(p => !p.Eliminado).ToList());
+            return Task.FromResult(session.Query<HistorialRecorrido>().Where(h => !h.Eliminado).ToList());
         }
     }
 }

@@ -12,7 +12,7 @@ namespace SmartBus.DataAccess.Maps
         public HistorialRecorridoMap()
             : base()
         {
-            Map(x => x.IdRecorrido);
+            References(x => x.Recorrido, "IdRecorrido");
             Map(x => x.FechaInicio);
             Map(x => x.FechaFinalizacion);
             HasMany(x => x.Paradas)
