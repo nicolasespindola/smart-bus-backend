@@ -23,7 +23,7 @@ namespace SmartBus.DataAccess.Handlers
         public override Task<HistorialRecorrido> ResolverCommand(AgregarHistorialRecorridoCommand command, CancellationToken cancellationToken)
         {
             var nuevoHistorialRecorrido = new HistorialRecorrido() {
-                IdRecorrido = command.IdRecorrido,
+                Recorrido = session.Get<Recorrido>(command.IdRecorrido),
                 FechaInicio = command.FechaInicio,
                 FechaFinalizacion = command.FechaFinalizacion,
                 FechaCreacion = DateTime.Now,
