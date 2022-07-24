@@ -10,5 +10,7 @@ namespace SmartBus.DataAccess.Queries
 {
     public class ObtenerRecorridosQuery : IRequest<List<Recorrido>>
     {
+        
+
     }
 }
