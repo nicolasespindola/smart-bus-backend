@@ -21,6 +21,11 @@ namespace SmartBus.DataAccess.Maps
                     e.Map(c => c.Longitude).Column("Longitud");
                 });
             });
+            HasManyToMany(x => x.Usuarios)
+                .Cascade.All()
+                .ParentKeyColumn("IdEscuela")
+                .ChildKeyColumn("IdUsuario")
+                .Table("EscuelaUsuario");
         }
     }
 }

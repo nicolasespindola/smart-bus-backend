@@ -68,6 +68,7 @@ namespace smart_bus_backend
             services.AddScoped<IEventualidadFactory, EventualidadFactory>();
             services.AddScoped<IRecorridoFactory, RecorridoFactory>();
             services.AddScoped<IPasajeroFactory, PasajeroFactory>();
+            services.AddScoped<IEscuelaFactory, EscuelaFactory>();
 
             services.AddMediatR(typeof(NHibernateConfigurationHelper).Assembly);
             services.AddMediatR(typeof(JwtUtils).Assembly);
