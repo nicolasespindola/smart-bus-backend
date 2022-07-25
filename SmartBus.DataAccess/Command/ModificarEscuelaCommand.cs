@@ -10,6 +10,7 @@ namespace SmartBus.DataAccess.Command
         public int Id { get; set; }
         public string Nombre { get; set; }
         public Direccion Direccion { get; set; }
+        public IEnumerable<string> EmailUsuarios { get; set; }
     }
 
 }

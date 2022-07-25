@@ -12,6 +12,6 @@ namespace SmartBus.DataAccess.Command
     {
         public string Nombre { get; set; }
         public Direccion Direccion { get; set; }
-
+        public IEnumerable<string> EmailUsuarios { get; set; }
     }
 }

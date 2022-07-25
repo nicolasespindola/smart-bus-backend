@@ -75,6 +75,7 @@
     <Build Include="Tables\PasajeroTutor.sql" />
     <Build Include="Tables\Parada.sql" />
     <Build Include="Tables\HistorialRecorrido.sql" />
+    <Build Include="Tables\EscuelaUsuario.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="SmartBus.Database.refactorlog" />

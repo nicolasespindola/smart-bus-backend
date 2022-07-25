@@ -10,5 +10,6 @@ namespace SmartBus.Entities
     {
         public virtual string Nombre { get; set; }
         public virtual Direccion Direccion { get; set; }
+        public virtual IEnumerable<Usuario> Usuarios { get; set; }
     }
 }
