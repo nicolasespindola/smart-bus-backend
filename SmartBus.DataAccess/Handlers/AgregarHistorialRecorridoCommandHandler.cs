@@ -33,13 +33,18 @@ namespace SmartBus.DataAccess.Handlers
 
             foreach(var parada in command.Paradas)
             {
-                var nuevaParada = new Parada() { 
+                var nuevaParada = new Parada() {
                     IdHistorialRecorrido = nuevoHistorialRecorrido.Id,
-                    Pasajero = session.Get<Pasajero>(parada.IdPasajero),
+                    Pasajero = !parada.EsEscuela ? session.Get<Pasajero>(parada.IdPasajero) : null,
+                    Escuela = parada.EsEscuela ? session.Get<Escuela>(parada.IdEscuela) : null,
                     FechaParada = parada.FechaParada,
                     Exito = parada.Exito,
+                    Eventualidad = parada.Eventualidad,
+                    EsEscuela = parada.EsEscuela,
                     FechaCreacion = DateTime.Now,
-                    UsuarioCreacion = userContext.NombreUsuario
+                    UsuarioCreacion = userContext.NombreUsuario,
+                    Coordenadas = parada.Coordenadas,
+                    Domicilio = parada.Domicilio
                 };
 
                 session.SaveOrUpdate(nuevaParada);
