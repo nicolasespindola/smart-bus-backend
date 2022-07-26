@@ -42,7 +42,7 @@ namespace SmartBus.DataAccess.Handlers
                     break;
 
                 case TipoDeUsuario.Escuela:
-                    recorridos = session.Query<Recorrido>().Where(r => !r.Eliminado && r.Escuela.Nombre == userContext.NombreUsuario).ToList();
+                    recorridos = session.Query<Recorrido>().Where(r => !r.Eliminado && r.Escuela.Usuarios.Any(u => u.Id == userContext.Id)).ToList();
                     break;
 
             }
