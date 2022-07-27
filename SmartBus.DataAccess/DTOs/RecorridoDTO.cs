@@ -29,7 +29,7 @@ namespace SmartBus.DataAccess.DTOs
             AñoCreacion = recorrido.AñoCreacion;
             Escuela = recorrido.Escuela;
             Chofer = recorrido.Chofer;
-            Pasajeros = recorrido.Pasajeros.Select(p => new PasajeroDTO(p, recorrido.OrdenPasajeros));
+            Pasajeros = recorrido.Pasajeros.Select(p => new PasajeroDTO(p, recorrido.OrdenPasajeros)).OrderBy(p => p.Orden);
             EstadosDeCuenta = recorrido.EstadosDeCuenta;
         }
     }
