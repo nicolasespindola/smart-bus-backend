@@ -9,6 +9,3 @@ Post-Deployment Script Template
                SELECT * FROM [$(TableName)]					
 --------------------------------------------------------------------------------------
 */
-
-:r .\T_TipoDeUsuario.sql
-:r .\T_Usuario.sql

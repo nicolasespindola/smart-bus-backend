@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using NHibernate;
+using SmartBus.DataAccess.DTOs;
 using SmartBus.DataAccess.Queries;
 using SmartBus.Entities;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace SmartBus.DataAccess.Handlers
 {
-    class ObtenerHistorialRecorridosXIdRecorridoQueryHandler : IRequestHandler<ObtenerHistorialRecorridosXIdRecorridoQuery, List<HistorialRecorrido>>
+    class ObtenerHistorialRecorridosXIdRecorridoQueryHandler : IRequestHandler<ObtenerHistorialRecorridosXIdRecorridoQuery, List<HistorialRecorridoDTO>>
     {
         private readonly ISession session;
 
@@ -18,9 +19,14 @@ namespace SmartBus.DataAccess.Handlers
             session = _session;
         }
 
-        public Task<List<HistorialRecorrido>> Handle(ObtenerHistorialRecorridosXIdRecorridoQuery request, CancellationToken cancellationToken)
+        public Task<List<HistorialRecorridoDTO>> Handle(ObtenerHistorialRecorridosXIdRecorridoQuery request, CancellationToken cancellationToken)
         {
-            return Task.FromResult(session.Query<HistorialRecorrido>().Where(p => p.Recorrido.Id == request.IdRecorrido && !p.Eliminado).ToList());
+            var historial = session.Query<HistorialRecorrido>()
+                                    .Where(p => p.Recorrido.Id == request.IdRecorrido && !p.Eliminado)
+                                    .Select(h => new HistorialRecorridoDTO(h))
+                                    .ToList();
+
+            return Task.FromResult(historial);
         }
 
     }

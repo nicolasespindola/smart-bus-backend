@@ -12,12 +12,10 @@ namespace SmartBus.DataAccess.Handlers
     public class AgregarHistorialRecorridoCommandHandler : CommandHandler<AgregarHistorialRecorridoCommand, HistorialRecorrido>
     {
         private readonly IWebUserContext userContext;
-        private readonly IPasajeroFactory pasajeroFactory;
-        public AgregarHistorialRecorridoCommandHandler(ISession _session, IWebUserContext _userContext, IPasajeroFactory _pasajeroFactory)
+        public AgregarHistorialRecorridoCommandHandler(ISession _session, IWebUserContext _userContext)
             : base(_session)
         {
             userContext = _userContext;
-            pasajeroFactory = _pasajeroFactory;
         }
 
         public override Task<HistorialRecorrido> ResolverCommand(AgregarHistorialRecorridoCommand command, CancellationToken cancellationToken)
@@ -26,6 +24,8 @@ namespace SmartBus.DataAccess.Handlers
                 Recorrido = session.Get<Recorrido>(command.IdRecorrido),
                 FechaInicio = command.FechaInicio,
                 FechaFinalizacion = command.FechaFinalizacion,
+                FechaParadaEscuela = command.FechaParadaEscuela,
+                Interrumpido = command.Interrumpido,
                 FechaCreacion = DateTime.Now,
                 UsuarioCreacion = userContext.NombreUsuario
             };
@@ -33,7 +33,7 @@ namespace SmartBus.DataAccess.Handlers
 
             foreach(var parada in command.Paradas)
             {
-                var nuevaParada = new Parada() { 
+                var nuevaParada = new Parada() {
                     IdHistorialRecorrido = nuevoHistorialRecorrido.Id,
                     Pasajero = session.Get<Pasajero>(parada.IdPasajero),
                     FechaParada = parada.FechaParada,
@@ -43,6 +43,18 @@ namespace SmartBus.DataAccess.Handlers
                 };
 
                 session.SaveOrUpdate(nuevaParada);
+            }
+
+            foreach(var irregularidad in command.Irregularidades)
+            {
+                var nuevaIrregularidad = new Irregularidad()
+                {
+                    IdHistorialRecorrido = nuevoHistorialRecorrido.Id,
+                    FechaIrregularidad = irregularidad.FechaIrregularidad,
+                    Descripcion = irregularidad.Descripcion
+                };
+
+                session.SaveOrUpdate(nuevaIrregularidad);
             }
             
             return Task.FromResult(nuevoHistorialRecorrido);
