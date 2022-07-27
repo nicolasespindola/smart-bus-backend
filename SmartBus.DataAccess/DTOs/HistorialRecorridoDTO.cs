@@ -16,7 +16,9 @@ namespace SmartBus.DataAccess.DTOs
             Paradas = historialRecorrido.Paradas.Select(p => new ParadaDTO()
             {
                 Id = p.Id,
+                IdPasajero = p.Pasajero.Id,
                 Nombre = p.Pasajero.Nombre,
+                Apellido = p.Pasajero.Apellido,
                 FechaParada = p.FechaParada,
                 Exito = p.Exito
             });
