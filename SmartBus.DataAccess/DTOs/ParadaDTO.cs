@@ -11,10 +11,7 @@ namespace SmartBus.DataAccess.DTOs
     {
         public int Id { get; set; }
         public string Nombre { get; set; }
-        public string Domicilio { get; set; }
-        public Coordenadas Coordenadas { get; set; }
         public DateTime FechaParada { get; set; }
         public bool Exito { get; set; }
-        public string Eventualidad { get; set; }
     }
 }

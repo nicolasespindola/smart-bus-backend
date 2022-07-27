@@ -16,20 +16,23 @@ namespace SmartBus.DataAccess.DTOs
             Paradas = historialRecorrido.Paradas.Select(p => new ParadaDTO()
             {
                 Id = p.Id,
-                Nombre = p.EsEscuela ? p.Escuela.Nombre : p.Pasajero.Nombre,
+                Nombre = p.Pasajero.Nombre,
                 FechaParada = p.FechaParada,
-                Exito = p.Exito,
-                Eventualidad = p.Eventualidad,
-                Coordenadas = p.Coordenadas,
-                Domicilio = p.Domicilio
+                Exito = p.Exito
             });
             FechaInicio = historialRecorrido.FechaInicio;
             FechaFinalizacion = historialRecorrido.FechaFinalizacion;
+            FechaParadaEscuela = historialRecorrido.FechaParadaEscuela;
+            Interrumpido = historialRecorrido.Interrumpido;
+            Irregularidades = historialRecorrido.Irregularidades;
         }   
         public int Id { get; set; }
         public Recorrido Recorrido { get; set; }
         public DateTime FechaInicio { get; set; }
-        public DateTime FechaFinalizacion { get; set; }
+        public DateTime? FechaFinalizacion { get; set; }
+        public DateTime? FechaParadaEscuela { get; set; }
+        public bool Interrumpido { get; set; }
+        public IEnumerable<Irregularidad> Irregularidades { get; set; }
         public IEnumerable<ParadaDTO> Paradas { get; set; }
     }
 }

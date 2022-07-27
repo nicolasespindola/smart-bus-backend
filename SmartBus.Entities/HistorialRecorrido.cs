@@ -10,7 +10,10 @@ namespace SmartBus.Entities
     {
         public virtual Recorrido Recorrido { get; set; }
         public virtual DateTime FechaInicio { get; set; }
-        public virtual DateTime FechaFinalizacion { get; set; }
+        public virtual DateTime? FechaFinalizacion { get; set; }
+        public virtual DateTime? FechaParadaEscuela { get; set; }
         public virtual IEnumerable<Parada> Paradas { get; set; }
+        public virtual IEnumerable<Irregularidad> Irregularidades { get; set; }
+        public virtual bool Interrumpido { get; set; }
     }
 }

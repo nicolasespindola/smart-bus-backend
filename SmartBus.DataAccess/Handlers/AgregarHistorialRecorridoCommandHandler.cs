@@ -12,12 +12,10 @@ namespace SmartBus.DataAccess.Handlers
     public class AgregarHistorialRecorridoCommandHandler : CommandHandler<AgregarHistorialRecorridoCommand, HistorialRecorrido>
     {
         private readonly IWebUserContext userContext;
-        private readonly IPasajeroFactory pasajeroFactory;
-        public AgregarHistorialRecorridoCommandHandler(ISession _session, IWebUserContext _userContext, IPasajeroFactory _pasajeroFactory)
+        public AgregarHistorialRecorridoCommandHandler(ISession _session, IWebUserContext _userContext)
             : base(_session)
         {
             userContext = _userContext;
-            pasajeroFactory = _pasajeroFactory;
         }
 
         public override Task<HistorialRecorrido> ResolverCommand(AgregarHistorialRecorridoCommand command, CancellationToken cancellationToken)
@@ -26,6 +24,8 @@ namespace SmartBus.DataAccess.Handlers
                 Recorrido = session.Get<Recorrido>(command.IdRecorrido),
                 FechaInicio = command.FechaInicio,
                 FechaFinalizacion = command.FechaFinalizacion,
+                FechaParadaEscuela = command.FechaParadaEscuela,
+                Interrumpido = command.Interrumpido,
                 FechaCreacion = DateTime.Now,
                 UsuarioCreacion = userContext.NombreUsuario
             };
@@ -35,19 +35,26 @@ namespace SmartBus.DataAccess.Handlers
             {
                 var nuevaParada = new Parada() {
                     IdHistorialRecorrido = nuevoHistorialRecorrido.Id,
-                    Pasajero = !parada.EsEscuela ? session.Get<Pasajero>(parada.IdPasajero) : null,
-                    Escuela = parada.EsEscuela ? session.Get<Escuela>(parada.IdEscuela) : null,
+                    Pasajero = session.Get<Pasajero>(parada.IdPasajero),
                     FechaParada = parada.FechaParada,
                     Exito = parada.Exito,
-                    Eventualidad = parada.Eventualidad,
-                    EsEscuela = parada.EsEscuela,
                     FechaCreacion = DateTime.Now,
-                    UsuarioCreacion = userContext.NombreUsuario,
-                    Coordenadas = parada.Coordenadas,
-                    Domicilio = parada.Domicilio
+                    UsuarioCreacion = userContext.NombreUsuario
                 };
 
                 session.SaveOrUpdate(nuevaParada);
+            }
+
+            foreach(var irregularidad in command.Irregularidades)
+            {
+                var nuevaIrregularidad = new Irregularidad()
+                {
+                    IdHistorialRecorrido = nuevoHistorialRecorrido.Id,
+                    FechaIrregularidad = irregularidad.FechaIrregularidad,
+                    Descripcion = irregularidad.Descripcion
+                };
+
+                session.SaveOrUpdate(nuevaIrregularidad);
             }
             
             return Task.FromResult(nuevoHistorialRecorrido);

@@ -11,6 +11,9 @@ namespace SmartBus.DataAccess.Command
         public DateTime FechaInicio { get; set; }
         public DateTime FechaFinalizacion { get; set; }
         public IEnumerable<AgregarParadaCommand> Paradas { get; set; }
+        public DateTime? FechaParadaEscuela { get; set; }
+        public bool Interrumpido { get; set; }
+        public IEnumerable<AgregarIrregularidadCommand> Irregularidades { get; set; }
     }
 
 }

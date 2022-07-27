@@ -14,11 +14,18 @@ namespace SmartBus.DataAccess.Maps
         {
             References(x => x.Recorrido, "IdRecorrido");
             Map(x => x.FechaInicio);
-            Map(x => x.FechaFinalizacion);
+            Map(x => x.FechaFinalizacion).Nullable();
+            Map(x => x.FechaParadaEscuela).Nullable();
             HasMany(x => x.Paradas)
                 .KeyColumn("IdHistorialRecorrido")
                 .Inverse()
                 .Cascade.All();
+            HasMany(x => x.Irregularidades)
+                .Table("IrregularidadesHistorialRecorrido")
+                .KeyColumn("IdHistorialRecorrido")
+                .Inverse()
+                .Cascade.All();
+            Map(x => x.Interrumpido);
         }
     }
 }
