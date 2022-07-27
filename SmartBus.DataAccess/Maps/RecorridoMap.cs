@@ -27,6 +27,11 @@ namespace SmartBus.DataAccess.Maps
                 .KeyColumn("IdRecorrido")
                 .Cascade
                 .All();
+            HasMany(x => x.OrdenPasajeros)
+                .KeyColumn("IdRecorrido")
+                .Table("OrdenPasajero")
+                .Cascade
+                .All();
         }
     }
 }

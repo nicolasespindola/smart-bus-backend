@@ -26,13 +26,25 @@ namespace SmartBus.DataAccess.Handlers
 
         public override Task<Recorrido> ResolverCommand(AgregarRecorridoCommand command, CancellationToken cancellationToken)
         {
-            var nuevoRecorrido = recorridoFactory.Crear(command.Nombre, 
+            var nuevoRecorrido = recorridoFactory.Crear(command.Nombre,
                                                         command.EsRecorridoDeIda, 
                                                         command.Horario, 
                                                         command.IdEscuela, 
                                                         command.IdChofer, 
                                                         userContext.NombreUsuario, 
-                                                        command.IdPasajeros);
+                                                        command.Pasajeros.Select(p => p.IdPasajero));
+            session.SaveOrUpdate(nuevoRecorrido);
+
+            var nuevoRecorridoPasajeroOrden = command.Pasajeros.Select(p =>
+                new OrdenPasajero()
+                {
+                    IdRecorrido = nuevoRecorrido.Id,
+                    IdPasajero = p.IdPasajero,
+                    Orden = p.Orden
+                });
+
+            session.SaveOrUpdate(nuevoRecorridoPasajeroOrden);
+
             return Task.FromResult(nuevoRecorrido);
         }
     }
