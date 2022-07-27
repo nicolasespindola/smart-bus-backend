@@ -30,7 +30,24 @@ namespace SmartBus.DataAccess.Handlers
             recorrido.AñoCreacion = DateTime.Now.Year;
             recorrido.UsuarioModificacion = userContext.NombreUsuario;
             recorrido.FechaModificacion = DateTime.Now;
-            recorrido.Pasajeros = SetearPasajeros(command.IdPasajeros);
+            recorrido.Pasajeros = SetearPasajeros(command.Pasajeros.Select(p => p.IdPasajero));
+
+            var ordenPasajeros = session.Query<OrdenPasajero>().Where(op => op.IdRecorrido == recorrido.Id);
+
+            foreach(var ordenPasajero in ordenPasajeros)
+            {
+                session.Delete(ordenPasajero);
+            }
+
+            foreach(var ordenPasajeroNuevo in command.Pasajeros)
+            {
+                session.SaveOrUpdate(new OrdenPasajero()
+                {
+                    IdRecorrido = recorrido.Id,
+                    IdPasajero = ordenPasajeroNuevo.IdPasajero,
+                    Orden = ordenPasajeroNuevo.Orden
+                });
+            }
 
             return Task.FromResult(recorrido);
         }
@@ -46,7 +63,7 @@ namespace SmartBus.DataAccess.Handlers
         {
             var recorrido = session.Get<Recorrido>(command.Id);
             var pasajerosViejo = recorrido.Pasajeros.Select(p => p.Id);
-            var pasajerosNuevo = command.IdPasajeros;
+            var pasajerosNuevo = command.Pasajeros.Select(p => p.IdPasajero);
 
             var idPasajerosEliminados = pasajerosViejo.Except(pasajerosNuevo);
             var idPasajerosAgregados = pasajerosNuevo.Except(pasajerosViejo);

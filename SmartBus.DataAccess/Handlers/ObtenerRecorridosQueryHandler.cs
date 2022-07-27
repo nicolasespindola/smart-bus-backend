@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using NHibernate;
 using SmartBus.DataAccess.Context;
+using SmartBus.DataAccess.DTOs;
 using SmartBus.DataAccess.Queries;
 using SmartBus.Entities;
 using SmartBus.Entities.Enumerators;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace SmartBus.DataAccess.Handlers
 {
-    public class ObtenerRecorridosQueryHandler : IRequestHandler<ObtenerRecorridosQuery, List<Recorrido>>
+    public class ObtenerRecorridosQueryHandler : IRequestHandler<ObtenerRecorridosQuery, List<RecorridoDTO>>
     {
         private readonly IWebUserContext userContext;
         private readonly ISession session;
@@ -22,7 +23,7 @@ namespace SmartBus.DataAccess.Handlers
             userContext = _userContext;
         }
 
-        public Task<List<Recorrido>> Handle(ObtenerRecorridosQuery request, CancellationToken cancellationToken)
+        public Task<List<RecorridoDTO>> Handle(ObtenerRecorridosQuery request, CancellationToken cancellationToken)
         {
             var recorridos = new List<Recorrido>();
             switch (userContext.TipoDeUsuario)
@@ -46,7 +47,8 @@ namespace SmartBus.DataAccess.Handlers
                     break;
 
             }
-            return Task.FromResult(recorridos);
+            var recorridosDTO = recorridos.Select(r => new RecorridoDTO(r)).ToList();
+            return Task.FromResult(recorridosDTO);
         }
     }
 }

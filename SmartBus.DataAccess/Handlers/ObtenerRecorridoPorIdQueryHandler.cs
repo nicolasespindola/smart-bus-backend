@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using NHibernate;
+using SmartBus.DataAccess.DTOs;
 using SmartBus.DataAccess.Queries;
 using SmartBus.Entities;
 using System;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace SmartBus.DataAccess.Handlers
 {
-    class ObtenerRecorridoPorIdQueryHandler : IRequestHandler<ObtenerRecorridoPorIdQuery, Recorrido>
+    class ObtenerRecorridoPorIdQueryHandler : IRequestHandler<ObtenerRecorridoPorIdQuery, RecorridoDTO>
     {
         private readonly ISession session;
 
@@ -19,13 +20,15 @@ namespace SmartBus.DataAccess.Handlers
             session = _session;
         }
 
-        public Task<Recorrido> Handle(ObtenerRecorridoPorIdQuery request, CancellationToken cancellationToken)
+        public Task<RecorridoDTO> Handle(ObtenerRecorridoPorIdQuery request, CancellationToken cancellationToken)
         {
             var recorrido = session.Query<Recorrido>().First(p => p.Id == request.Id && !p.Eliminado);
             var pasajerosFiltrado = ObtenerCambiosDeDomicilio(recorrido.Id, recorrido.Pasajeros);
             pasajerosFiltrado = ObtenerPasajerosPresentesHoy(recorrido.Id, pasajerosFiltrado);
             recorrido.Pasajeros = pasajerosFiltrado;
-            return Task.FromResult(recorrido);
+
+            var recorridoDTO = new RecorridoDTO(recorrido);
+            return Task.FromResult(recorridoDTO);
         }
 
         private IEnumerable<Pasajero> ObtenerPasajerosPresentesHoy(int idRecorrido, IEnumerable<Pasajero> pasajerosFiltrado)
