@@ -12,7 +12,7 @@ namespace SmartBus.DataAccess.Command
         public bool EsRecorridoDeIda { get; set; }
         public DateTime Horario { get; set; }
         public int? IdEscuela { get; set; }
-        public IEnumerable<int> IdPasajeros { get; set; }
+        public IEnumerable<AgregarPasajeroRecorridoCommand> Pasajeros { get; set; }
     }
 
 }

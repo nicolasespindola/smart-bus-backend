@@ -16,5 +16,6 @@ namespace SmartBus.Entities
         public virtual Usuario Chofer { get; set; }
         public virtual IEnumerable<Pasajero> Pasajeros { get; set; }
         public virtual IEnumerable<EstadoDeCuenta> EstadosDeCuenta { get; set; }
+        public virtual IEnumerable<OrdenPasajero> OrdenPasajeros { get; set; }
     }
 }

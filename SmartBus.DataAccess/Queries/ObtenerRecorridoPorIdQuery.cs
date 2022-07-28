@@ -1,9 +1,10 @@
 ﻿using MediatR;
+using SmartBus.DataAccess.DTOs;
 using SmartBus.Entities;
 
 namespace SmartBus.DataAccess.Queries
 {
-    public class ObtenerRecorridoPorIdQuery : IRequest<Recorrido>
+    public class ObtenerRecorridoPorIdQuery : IRequest<RecorridoDTO>
     {
         public int Id { get; set; }
 

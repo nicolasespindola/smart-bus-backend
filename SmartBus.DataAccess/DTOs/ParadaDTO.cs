@@ -10,7 +10,9 @@ namespace SmartBus.DataAccess.DTOs
     public class ParadaDTO
     {
         public int Id { get; set; }
+        public int IdPasajero { get; set; }
         public string Nombre { get; set; }
+        public string Apellido { get; set; }
         public DateTime FechaParada { get; set; }
         public bool Exito { get; set; }
     }
