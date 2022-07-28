@@ -23,6 +23,7 @@ namespace SmartBus.DataAccess.Handlers
         {
             var historial = session.Query<HistorialRecorrido>()
                                     .Where(p => p.Recorrido.Id == request.IdRecorrido && !p.Eliminado)
+                                    .OrderByDescending(h => h.FechaCreacion)
                                     .Select(h => new HistorialRecorridoDTO(h))
                                     .ToList();
 
