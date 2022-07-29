@@ -35,15 +35,15 @@ namespace SmartBus.DataAccess.Handlers
                                                         command.Pasajeros.Select(p => p.IdPasajero));
             session.SaveOrUpdate(nuevoRecorrido);
 
-            var nuevoRecorridoPasajeroOrden = command.Pasajeros.Select(p =>
-                new OrdenPasajero()
+            foreach (var ordenPasajeroNuevo in command.Pasajeros)
+            {
+                session.SaveOrUpdate(new OrdenPasajero()
                 {
                     IdRecorrido = nuevoRecorrido.Id,
-                    IdPasajero = p.IdPasajero,
-                    Orden = p.Orden
+                    IdPasajero = ordenPasajeroNuevo.IdPasajero,
+                    Orden = ordenPasajeroNuevo.Orden
                 });
-
-            session.SaveOrUpdate(nuevoRecorridoPasajeroOrden);
+            }
 
             return Task.FromResult(nuevoRecorrido);
         }
